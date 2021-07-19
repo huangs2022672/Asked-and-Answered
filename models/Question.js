@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
-    user: {
+    author: {
       type: Schema.Types.ObjectId,
       ref: "users"
     },
@@ -20,10 +20,11 @@ const QuestionSchema = new Schema({
     },
     assign_to: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "users",
+        default: null
     },
     resolved: {
-        type: boolean,
+        type: Boolean,
         required: true
     }
   })
