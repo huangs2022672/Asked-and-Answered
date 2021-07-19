@@ -8,7 +8,8 @@ class LoginForm extends React.Component {
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errors: {},
+            role: 'student'
         };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,9 +34,9 @@ class LoginForm extends React.Component {
 
         let user = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            role: this.state.role,
         };
-
         this.props.login(user).then(() => window.location.reload()); 
     }
 
