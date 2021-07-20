@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -9,13 +10,15 @@ class LoginForm extends React.Component {
             email: '',
             password: '',
             errors: {},
-            role: 'student'
         };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
+    componentDidMount(){
+        this.props.location.pathname === "/login-student" ? this.setState({role: "student"}) : this.setState({role: "instructor"})
+    }
+    
     componentWillReceiveProps(nextProps) {
         if (nextProps.currentUser === true) {
             this.props.history.push('/');
@@ -31,12 +34,12 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
         let user = {
             email: this.state.email,
             password: this.state.password,
             role: this.state.role,
         };
+        debugger
         this.props.login(user).then(() => window.location.reload()); 
     }
 
@@ -73,6 +76,9 @@ class LoginForm extends React.Component {
                 {this.renderErrors()}
             </div>
             </form>
+            {this.state.role === "student" ? 
+                <div>New to A&A?<Link to='/signup'>Sign Up</Link></div> : ""
+            }
         </div>
         );
     }
