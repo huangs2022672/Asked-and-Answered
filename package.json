@@ -20,8 +20,10 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3",
+    "node-sass": "^6.0.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "sass": "^1.35.2",
     "shutup": "^0.0.1",
     "validator": "^13.6.0"
   },

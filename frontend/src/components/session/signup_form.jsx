@@ -1,5 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link} from 'react-router-dom';
+import './session_form.css'
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -57,38 +58,46 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-        <div className="signup-form-container">
-            <form onSubmit={this.handleSubmit}>
-            <div className="signup-form">
-                <br/>
-                <input type="text"
-                    value={this.state.email}
-                    onChange={this.update('email')}
-                    placeholder="Email"
-                />
-                <br/>
-                <input type="text"
-                    value={this.state.name}
-                    onChange={this.update('name')}
-                    placeholder="Name"
-                />
-                <br/>
-                <input type="password"
-                    value={this.state.password}
-                    onChange={this.update('password')}
-                    placeholder="Password"
-                />
-                <br/>
-                <input type="password"
-                    value={this.state.password2}
-                    onChange={this.update('password2')}
-                    placeholder="Confirm Password"
-                />
-                <br/>
-                <input type="submit" value="Submit" />
-                {this.renderErrors()}
+        <div >
+            <div className='login-form-nav-bar'><Link to='/'>Asked & Answered</Link></div>
+            <div className="login-form-container">
+                <form onSubmit={this.handleSubmit}>
+                    <h1 className='login-form-header'>Sign Up</h1>
+                    <div className='session-form-errors'>{this.renderErrors()}</div>
+                    <div className="signup-form">
+                        <br/>
+                        <input type="text"
+                            value={this.state.email}
+                            onChange={this.update('email')}
+                            placeholder="Email"
+                            className='login-form-input'
+                        />
+                        <br/>
+                        <input type="text"
+                            value={this.state.name}
+                            onChange={this.update('name')}
+                            placeholder="Name"
+                            className='login-form-input'
+                        />
+                        <br/>
+                        <input type="password"
+                            value={this.state.password}
+                            onChange={this.update('password')}
+                            placeholder="Password"
+                            className='login-form-input'
+                        />
+                        <br/>
+                        <input type="password"
+                            value={this.state.password2}
+                            onChange={this.update('password2')}
+                            placeholder="Confirm Password"
+                            className='login-form-input'
+                        />
+                        <br/>
+                        <button type='submit' className='login-form-button'>Submit</button> 
+                </div>
+                </form>
             </div>
-            </form>
         </div>
         );
     }

@@ -1,0 +1,56 @@
+.login-form-nav-bar{
+    padding-top: 20px;
+    text-align: center;
+    color: black;
+    font-size: 36px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.login-form-nav-bar a{
+    text-decoration: none;
+}
+.login-form-nav-bar a:visited{
+    text-decoration: none;
+    color: black
+}
+
+.login-form-container{
+    position: fixed;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 50px;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.login-form-header{
+    text-align: center;
+}
+
+.login-form-input{
+    height: 40px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    border: 1px black solid;
+    padding-left: 15px;
+}
+
+.login-form-button{
+    height: 42px;
+    width: 107%;
+    background-color: #4CAF50;
+    border-radius: 3px;
+    border: none;
+}
+
+.login-form-no-account{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.session-form-errors{
+    color:red;
+}
