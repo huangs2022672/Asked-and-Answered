@@ -9,7 +9,8 @@ class SignupForm extends React.Component {
             name: '',
             password: '',
             password2: '',
-            errors: {}
+            errors: {},
+            role: 'student'
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,9 +37,9 @@ class SignupForm extends React.Component {
         email: this.state.email,
         name: this.state.name,
         password: this.state.password,
-        password2: this.state.password2
+        password2: this.state.password2,
+        role: this.state.role
         };
-
         this.props.signup(user, this.props.history); 
     }
 

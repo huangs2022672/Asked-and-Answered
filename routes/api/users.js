@@ -33,7 +33,8 @@ router.post('/register', (req, res) => {
             const newUser = new User({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                role: req.body.role
             })
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -59,7 +60,6 @@ router.post('/register', (req, res) => {
 })
 
 router.post("/login", (req, res) => {
-    debugger
     const { errors, isValid } = validateLoginInput(req.body);
 
     if (!isValid) {
@@ -68,13 +68,16 @@ router.post("/login", (req, res) => {
 
     const email = req.body.email;
     const password = req.body.password;
+    const role = req.body.role;
 
     User.findOne({email})
         .then(user => {
             if (!user) {
                 return res.status(404).json({email: 'This user does not exist'});
             }
-
+            if (role !== user.role){
+                return res.status(404).json({role: 'This account does not exist'})
+            }
         bcrypt.compare(password, user.password)
             .then(isMatch => {
             if (isMatch) {
