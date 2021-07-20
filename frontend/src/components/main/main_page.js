@@ -13,11 +13,11 @@ class MainPage extends React.Component {
     }
 
     ensureLoggedin(){
-        debugger
         if(this.props.loggedIn){
             return(
                 <div>
                     <h1>Question index container goes here</h1>  
+                    <h1>Welcome {this.props.session.user.name}</h1>
                     <button onClick={this.logoutUser}>Logout</button> 
                 </div>
             )
@@ -32,7 +32,6 @@ class MainPage extends React.Component {
     }
 
     render() {
-        debugger
         return (
         <div>
             <h1>Asked & Answered</h1>
