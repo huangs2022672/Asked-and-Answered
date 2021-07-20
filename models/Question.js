@@ -18,7 +18,7 @@ const QuestionSchema = new Schema({
       type: Date,
       default: Date.now
     },
-    assign_to: {
+    assigned_to: {
       type: Schema.Types.ObjectId,
       ref: "users",
       default: null

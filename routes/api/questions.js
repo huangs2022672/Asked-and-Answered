@@ -7,6 +7,7 @@ const User = require("../../models/User");
 
 // router.get("/test", (req, res) => res.json({msg: "This is the questions route"}))
 
+
 router.get('/resolved', (req, res) => {
     Question.find({ resolved: true})
         .sort({date: -1})
@@ -14,13 +15,20 @@ router.get('/resolved', (req, res) => {
         .catch(err =>  res.status(404).json({ error: "/resolved not found" }))
 });
 
+// NEED MORE TESTING :(
 router.get('/pending', (req, res) => {
     Question.find({ resolved: false})
-        .then( questions => res.json(questions))
+        .then( questions => {
+            // const filteredQuestions = questions.filter(question => 
+            //         question.assigned_to !== null
+            //     )
+            // res.json(filteredQuestions)
+             res.json(questions)
+        })
         .catch(err =>  res.status(404).json({ error: "/pending not found" }))
 });
 
-// test this
+// NEED MORE TESTING :(
 router.get('/unassigned', (req, res) => {
     Question.find({ assigned_to: null })
         .then( questions => res.json(questions))
@@ -31,7 +39,7 @@ router.get('/user/:user_id', (req, res) => {
     User.findById(req.params.user_id)
         .then(user => {
             if (user.role === "instructor") {
-                Question.find(({ assign_to: req.params.user_id }))
+                Question.find(({ assigned_to: req.params.user_id }))
                 .then(questions => res.json(questions))
                 .catch(err => res.status(404).json({ questionsNotFound: "No questions found" }))
             } else if (user.role === "student") {
@@ -90,6 +98,52 @@ router.patch('/:id',
             .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
 })
 
+
+router.patch('/:id/assign',
+passport.authenticate("jwt", { session: false }),
+async (req, res) => {
+    const question = await Question.findById(req.params.id)
+
+    if (question.assigned_to) {
+        question.assigned_to = null;
+    } else {
+        question.assigned_to = req.user.id;
+    }
+    question.save()
+    .then(question => res.json(question))
+    .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
+})
+
+
+
+router.patch('/:id/resolve',
+passport.authenticate("jwt", { session: false }),
+async (req, res) => {
+    const question = await Question.findById(req.params.id)
+    
+    if (question.resolved) {
+        question.resolved = false;
+    } else {
+        question.resolved = true;
+    }
+    question.save()
+    .then(question => res.json(question))
+    .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
+})
+
+
+router.delete('/:id',
+passport.authenticate("jwt", { session: false }),
+(req, res) => {
+    Question.findByIdAndDelete(req.params.id)
+    .then(question => res.json(question))
+    .catch(err => res.status(404).json({noquestionfound: 'No questions found'}))
+});
+
+module.exports = router
+
+
+// alternative way to update question
 // router.patch('/:id/assign',
 //     passport.authenticate("jwt", { session: false }),
 //     (req, res) => {
@@ -118,42 +172,3 @@ router.patch('/:id',
 
 //         // console.log(thisQuestion)
 // })
-
-router.patch('/:id/assign',
-    passport.authenticate("jwt", { session: false }),
-    async (req, res) => {
-        const question = await Question.findById(req.params.id)
-
-
-        if (question.assign_to) {
-            // Question.updateOne({id: thisQuestion.id}, {assign_to: null})
-            //     .then(question => res.json(question))
-            //     .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
-
-            question.assign_to = null;
-        } else {
-            // Question.updateOne({id: thisQuestion.id}, {assign_to: req.user.id})
-            //     .then(question => res.json(question))
-            //     .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
-
-            question.assign_to = req.user.id;
-        }
-
-        question.save()
-            .then(question => res.json(question))
-            .catch(err => res.status(404).json({noquestionfound: 'Something went wrong!'}))
-        // console.log(thisQuestion)
-})
-
-router.patch('/:id/resolve')
-
-
-router.delete('/:id',
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        Question.deleteOne({id: req.params.id})
-            .then(question => res.json(question))
-            .catch(err => res.status(404).json({noquestionfound: 'No questions found'}))
-});
-
-module.exports = router
