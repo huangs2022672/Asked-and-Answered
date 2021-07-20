@@ -37,7 +37,7 @@ class MainPage extends React.Component {
         return (
             <>
         <div className="main_page">
-            <h1 className="main_logo">Asked & Answered</h1>
+            <p className="main_logo">Asked & Answered</p>
             <div>
                 {this.ensureLoggedin()}
             </div>

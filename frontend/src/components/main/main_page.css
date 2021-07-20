@@ -35,6 +35,9 @@
 
 font-family: 'Luckiest Guy', cursive;
 font-size: 45px;
+/* border: 1px solid black; */
+width: 270px;
+
 }
 
 .welcome_user {
