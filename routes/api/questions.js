@@ -1,61 +1,58 @@
 const express = require("express")
 const router = express.Router()
 const Question = require('../../models/Question')
-const keys = require('../../config/keys');
-const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateQuestionInput = require('../../validation/question');
 const User = require("../../models/User");
 
-router.get("/test", (req, res) => res.json({msg: "This is the questions route"}))
-
-router.get('/current', passport.authenticate('jwt', {session: false}, (req, res) => {
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email
-    });
-}))
+// router.get("/test", (req, res) => res.json({msg: "This is the questions route"}))
 
 router.get('/resolved', (req, res) => {
     Question.find({ resolved: true})
         .sort({date: -1})
         .then( questions => res.json(questions))
-        .catch(err =>  res.status(404).json({ questionsNotFound: "No questions found" }))
-
+        .catch(err =>  res.status(404).json({ error: "/resolved not found" }))
 });
+
 router.get('/pending', (req, res) => {
     Question.find({ resolved: false})
-    .then( questions => res.json(questions))
-    .catch(err =>  res.status(404).json({ questionsNotFound: "No questions pending" }))
+        .then( questions => res.json(questions))
+        .catch(err =>  res.status(404).json({ error: "/pending not found" }))
 });
 
 router.get('/unassigned', (req, res) => {
     Question.find({ assigned_to: null })
-    .then( questions => res.json(questions))
-    .catch(err => res.status(404).json({ questionsNotFound: "No questions unassigned"}))
+        .then( questions => res.json(questions))
+        .catch(err => res.status(404).json({ error: "/unassigned not found"}))
 });
 
+// tested but not successful
 router.get('/user/:user_id', (req, res) => {
-    user = User.find({ user: req.params.user_id  }) 
+    User.findById(req.params.user_id)
+        .then(user => {
+            if (user.role === "instructor") {
+                Question.find(({ assign_to: req.params.user_id }))
+                .then(questions => res.json(questions))
+                .catch(err => res.status(404).json({ questionsNotFound: "No questions found" }))
+            } else if (user.role === "student") {
+                Question.find({ author: req.params.user_id})
+                .then(questions => res.json(questions))
+                .catch(err => res.status(404).json({ questionsNotFound: "No questions found" }))
+            }
+        })
+        .catch(err => res.status(404).json({ nouserfound: 'No user found' }));
 
-    if (user.role === "instructor") {
-        Question.find(({ assign_to: req.params.user_id }))
-        .then(questions => res.json(questions))
-        .catch(err => res.status(404).json({ questionsNotFound: "No questions found" }))
-    } else if (user.role === "student") {
-        Question.find({ author: req.params.user_id})
-        .then(questions => res.json(questions))
-        .catch(err => res.status(404).json({ questionsNotFound: "No questions found" }))
-    }
 })
 
+// not tested
+router.get('/:id', (req, res) => {
+    Question.findById(req.params.id)
+        .then(question => res.json(question))
+        .catch(err => res.status(404).json({ noquestionfound: 'No question found' }));
+});
 
-
-router.post(
-    '/', 
-    passport.authenticate("jwt", 
-    { session: false }),
+router.post('/',
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const {errors, isValid} = validateQuestionInput(req.body)
         if (!isValid) {
@@ -67,9 +64,8 @@ router.post(
             author: req.user.id, // how does this make sense??
         })
 
-        newQuestion.saved()
+        newQuestion.save()
             .then(question => res.json(question))
 })
 
-
-
+module.exports = router

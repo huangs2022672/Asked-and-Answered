@@ -19,13 +19,13 @@ const QuestionSchema = new Schema({
       default: Date.now
     },
     assign_to: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-        default: null
+      type: Schema.Types.ObjectId,
+      ref: "users",
+      default: null
     },
     resolved: {
-        type: Boolean,
-        required: true
+      type: Boolean,
+      default: false
     }
   })
 
