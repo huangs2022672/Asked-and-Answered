@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './main_page.css';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -17,15 +18,16 @@ class MainPage extends React.Component {
             return(
                 <div>
                     <h1>Question index container goes here</h1>  
-                    <h1>Welcome {this.props.session.user.name}</h1>
-                    <button onClick={this.logoutUser}>Logout</button> 
+                    <h1 className="welcome_user">Welcome {this.props.session.user.name}</h1>
+                    <button className="mainbtn" onClick={this.logoutUser}>Logout</button> 
                 </div>
             )
         } else {
             return(
                 <div>
-                    <Link to={'/login-student'}><button>Log in as Student</button></Link>
-                    <Link to={'/login-instructor'}><button>Log in as Instructor</button></Link>
+                    <Link to={'/login-student'}><button className="mainbtn">Log in as Student</button></Link>
+                    <br></br>
+                    <Link to={'/login-instructor'}><button className="mainbtn"> Log in as Instructor</button></Link>
                 </div>
             )
         }
@@ -33,12 +35,14 @@ class MainPage extends React.Component {
 
     render() {
         return (
-        <div>
-            <h1>Asked & Answered</h1>
+            <>
+        <div className="main_page">
+            <h1 className="main_logo">Asked & Answered</h1>
             <div>
                 {this.ensureLoggedin()}
             </div>
         </div>
+        </>
         );
     }
 }
