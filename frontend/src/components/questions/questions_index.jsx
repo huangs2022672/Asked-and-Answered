@@ -1,6 +1,7 @@
 import React from 'react'
 import { fetchUnassigned } from '../../actions/question_actions'
 import './questions_index.css'
+import QuestionIndexItem from './questions_index_item'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
@@ -41,45 +42,25 @@ class QuestionsIndex extends React.Component {
     if (this.state.currentTab === "unassigned") {
       return questions.map( question => {
           return (
-              <div>
-                <li>{question.title}</li>
-                <li>{question.body}</li>
-                <li>{question.assigned_to ? "assigned" : "unassigned"}</li>
-                <li>{question.resolved ? "resolved" : "unresolved"}</li>
-              </div>
+            <QuestionIndexItem question={question} />
           )
         })
     } else if (this.state.currentTab === "pending") {
       return questions.map( question => {
         return (
-            <div>
-              <li>{question.title}</li>
-              <li>{question.body}</li>
-              <li>{question.assigned_to ? "assigned" : "unassigned"}</li>
-              <li>{question.resolved ? "resolved" : "unresolved"}</li>
-            </div>
+          <QuestionIndexItem question={question} />
         )
       })
     } else if (this.state.currentTab === "mine") {
       return questions.map( question => {
         return (
-            <div>
-              <li>{question.title}</li>
-              <li>{question.body}</li>
-              <li>{question.assigned_to ? "assigned" : "unassigned"}</li>
-              <li>{question.resolved ? "resolved" : "unresolved"}</li>
-            </div>
+          <QuestionIndexItem question={question} />
         )
       })
     } else if (this.state.currentTab === "resolved") {
       return questions.map( question => {
         return (
-            <div>
-              <li>{question.title}</li>
-              <li>{question.body}</li>
-              <li>{question.assigned_to ? "assigned" : "unassigned"}</li>
-              <li>{question.resolved ? "resolved" : "unresolved"}</li>
-            </div>
+          <QuestionIndexItem question={question} />
         )
       })
     }
@@ -90,36 +71,47 @@ class QuestionsIndex extends React.Component {
     
 
     return (
-      <div className="questions-index-main">
+      <div className="question__index">
+        <div className="questions-index-main">
 
-        <div className="questions-index-tabs">
-          <div className={this.state.currentTab === "unassigned" ?  (
-            "unassigned-tab selected") : ("unassigned-tab")}
-          onClick={this.handleFetchUnassigned}
-          >Unassigned</div>
+          <div className="questions-index-tabs">
+            <div className={this.state.currentTab === "unassigned" ?  (
+              "unassigned-tab selected") : ("unassigned-tab")}
+            onClick={this.handleFetchUnassigned}
+            >Unassigned</div>
 
-          <div className={this.state.currentTab === "pending" ? (
-            "pending-tab selected") : ("pending-tab")}
-          onClick={this.handleFetchPending}
-          >Pending</div>
+            <div className={this.state.currentTab === "pending" ? (
+              "pending-tab selected") : ("pending-tab")}
+            onClick={this.handleFetchPending}
+            >Pending</div>
 
-          <div className={this.state.currentTab === "mine" ? (
-            "mine-tab selected") : ("mine-tab")}
-            onClick={this.handleUserQuestions}
-          >Mine</div>
+            <div className={this.state.currentTab === "mine" ? (
+              "mine-tab selected") : ("mine-tab")}
+              onClick={this.handleUserQuestions}
+            >Mine</div>
 
-          <div className={this.state.currentTab === "resolved" ? (
-            "resolved-tab selected") : ("resolved-tab")}
-          onClick={this.handleFetchResolved}
-          >Resolved</div>
+            <div className={this.state.currentTab === "resolved" ? (
+              "resolved-tab selected") : ("resolved-tab")}
+            onClick={this.handleFetchResolved}
+            >Resolved</div>
+          </div>
+              
+          <div className="questions-index-view">
+            { 
+              questions ? this.currentView() : null
+            }
+          </div>
+
+          <div className="questions__index__form">
+            <form onSubmit={this.handleSubmit}>
+              <input type="text" />
+              <textarea ></textarea>
+            </form>
+          </div>
         </div>
-            
-        <div className="questions-index-view">
-          { 
-            questions ? this.currentView() : null
-          }
+        <div className="question__index__show">
+          question__index__show
         </div>
-
       </div>
     )
   }
