@@ -1,0 +1,38 @@
+.questions-index-main {
+  border: 1px solid green;
+  display: block;
+  width: 80vw;
+  margin: 50px auto;
+}
+
+.questions-index-tabs {
+  border: 1px solid aquamarine;
+  display: flex;
+  justify-content: space-evenly;
+
+  margin: 0 auto;
+}
+
+.questions-index-tabs div {
+  border: 1px solid mediumseagreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.questions-index-tabs div.selected {
+  border: 3px solid lawngreen;
+  font-weight: bolder;
+}
+
+.questions-index-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px
+}
+

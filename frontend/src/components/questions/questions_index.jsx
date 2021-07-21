@@ -1,4 +1,5 @@
 import React from 'react'
+import './questions_index.css'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
@@ -26,19 +27,23 @@ class QuestionsIndex extends React.Component {
       <div className="questions-index-main">
 
         <div className="questions-index-tabs">
-          <div className="unassigned-tab"
+          <div className={this.state.currentTab === "unassigned" ? (
+            "unassigned-tab selected") : ("unassigned-tab")}
           onClick={() => this.setState({currentTab: "unassigned"})}
           >Unassigned</div>
 
-          <div className="pending-tab"
+          <div className={this.state.currentTab === "pending" ? (
+            "pending-tab selected") : ("pending-tab")}
           onClick={() => this.setState({currentTab: "pending"})}
           >Pending</div>
 
-          <div className="mine-tab"
+          <div className={this.state.currentTab === "mine" ? (
+            "mine-tab selected") : ("mine-tab")}
           onClick={() => this.setState({currentTab: "mine"})}
           >Mine</div>
 
-          <div className="resolved-tab"
+          <div className={this.state.currentTab === "resolved" ? (
+            "resolved-tab selected") : ("resolved-tab")}
           onClick={() => this.setState({currentTab: "resolved"})}
           >Resolved</div>
         </div>
