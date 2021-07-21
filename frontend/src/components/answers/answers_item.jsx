@@ -1,14 +1,14 @@
 import React from 'react';
 
-const AnswersItem =({answer}) => {
+const AnswersItem =({answer, users}) => {
 
-    debugger
+    // debugger
     return (
         <>
             <ul>
                 <div>
                     {answer.author}
-                    {/* change to name later */}
+                    
                 </div>
                 <div>
                     {answer.body}

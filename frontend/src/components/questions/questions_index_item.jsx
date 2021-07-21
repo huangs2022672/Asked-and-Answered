@@ -2,6 +2,10 @@ import React from 'react';
 import AnswersIndexContainer from '../answers/answers_index_container';
 
 class QuestionIndexItem extends React.Component {
+
+    componentDidUpdate(){
+        this.props.fetchAnswers(this.props.question._id)
+    }
     render() {
         const {question, users} = this.props
         debugger

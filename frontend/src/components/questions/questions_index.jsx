@@ -18,6 +18,7 @@ class QuestionsIndex extends React.Component {
   componentDidMount(){
     this.props.fetchUnassigned()
     this.props.fetchUsers()
+   
   }
 
   handleFetchPending(){
@@ -42,25 +43,26 @@ class QuestionsIndex extends React.Component {
     if (this.state.currentTab === "unassigned") {
       return questions.map( question => {
           return (
-            <QuestionIndexItem question={question} />
+            <QuestionIndexItem question={question} fetchAnswers={this.props.fetchAnswers} />
           )
         })
     } else if (this.state.currentTab === "pending") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem question={question} fetchAnswers={this.props.fetchAnswers} />
         )
       })
     } else if (this.state.currentTab === "mine") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem question={question} fetchAnswers={this.props.fetchAnswers} />
         )
       })
     } else if (this.state.currentTab === "resolved") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem question={question} 
+          fetchAnswers={this.props.fetchAnswers} />
         )
       })
     }
@@ -110,7 +112,7 @@ class QuestionsIndex extends React.Component {
           </div>
           <div className="question__index__show">
             {questions ? questions.map(question => (
-              <div><QuestionIndexItem question={question} users={this.props.users}/></div>
+              <div><QuestionIndexItem question={question} users={this.props.users} fetchAnswers={this.props.fetchAnswers}/></div>
             )) : null } 
           </div>
         </div>

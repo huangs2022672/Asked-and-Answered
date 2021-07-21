@@ -9,13 +9,17 @@ class AnswersIndex extends React.Component {
             body:""
         };
         this.updateBody = this.updateBody.bind(this);
-        this.props.fetchAnswers(this.props.question._id)
+        // this.props.fetchAnswers(this.props.question._id)
     }
 
     componentDidMount(){
-        debugger
+        
         this.props.fetchAnswers(this.props.question._id)
     }
+
+    // componentDidUpdate () {
+    //     this.props.fetchAnswers(this.props.question._id)
+    // }
 
     updateBody(e) {
         e.preventDefault();
@@ -29,34 +33,27 @@ class AnswersIndex extends React.Component {
         this.props.createAnswer(this.props.question._id, this.state);
     }
 
-    renderAnswers(){
-        const {answers, users} = this.props
-        debugger
-        if(answers.length > 1){
-            if (answers[0].length > 1){
-            answers[0].map(answer => {
-                console.log(answer)
-                return <AnswersItem
-                        users={users}
-                        answer={answer}
-                        key={answer._id} />
-            })} 
-        } else {
-            return null
-        }
-    }
+
 
     render () {
-        if (!this.props.answers){
+        
+        if (this.props.answers.length ===0){
             return(
                 <div>Loading...</div>
             )
-        } else {    
+        } else {   
+            const {answers, users} = this.props;
+            debugger
             return (
     
                 <>
                 <div>
-                    {this.renderAnswers()}
+                    { answers[0].map(answer => (<AnswersItem
+                        users={users}
+                        answer={answer}
+                        key={answer._id} />))
+                 
+                    }
                 </div>
     
                 <form onSubmit={this.handleSubmit}>
