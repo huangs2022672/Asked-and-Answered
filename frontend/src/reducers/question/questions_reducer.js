@@ -6,10 +6,12 @@ import {
 
 const questionsReducer = (state = {}, action) => {
   Object.freeze(state)
-  const newState = Object.assign({}, state)
+  let newState = Object.assign({}, state)
 
   switch(action.type) {
     case RECEIVE_QUESTIONS:
+      
+      // newState = action.questions.data
       newState = Object.assign({}, state, action.questions)
       return newState;
     case RECEIVE_QUESTION:
