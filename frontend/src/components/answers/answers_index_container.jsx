@@ -2,8 +2,8 @@ import AnswersIndex from './answers_index';
 import {fetchAnswers, fetchAnswer, createAnswer, updateAnswer, deleteAnswer} from '../../actions/answer_actions';
 import {connect} from 'react-redux';
 
-const mSTP =() => ({
-
+const mSTP =(state) => ({
+    answers: Object.values(state.entities.answers)
 });
 
 const mDTP = (dispatch) => (

@@ -5,10 +5,14 @@ export const RECEIVE_ANSWER = 'RECEIVE_ANSWER'
 export const REMOVE_ANSWER = 'REMOVE_ANSWER'
 export const RECEIVE_ANSWER_ERRORS = 'RECEIVE_ANSWER_ERRORS'
 
-export const receiveAnswers = answers => ({
-    type: RECEIVE_ANSWERS,
-    answers
-})
+export const receiveAnswers = answers => {
+    debugger
+    return{
+        type: RECEIVE_ANSWERS,
+        answers
+    }
+}
+    
 
 export const receiveAnswer = answer => ({
     type: RECEIVE_ANSWER,
@@ -25,10 +29,13 @@ export const receiveAnswerErrors = errors => ({
     errors
 });
 
-export const fetchAnswers = (questionId) => dispatch => {
+export const fetchAnswers = (questionId) => dispatch => (
     AnswerAPIUtil.fetchAnswers(questionId)
-        .then(answers => dispatch(receiveAnswers(answers)))
-} 
+        .then(answers => {
+            debugger
+            return(dispatch(receiveAnswers(answers)))
+        }
+));
 
 export const fetchAnswer = (questionId, answerId) => dispatch => {
     AnswerAPIUtil.fetchAnswer(questionId, answerId)
