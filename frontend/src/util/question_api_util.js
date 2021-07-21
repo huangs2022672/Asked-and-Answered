@@ -25,7 +25,8 @@ export const createQuestion = (questionData) => {
 }
 
 export const updateQuestion = (questionData) => {
-    return axios.patch(`api/questions/${questionData.id}`, questionData);
+    debugger
+    return axios.patch(`api/questions/${questionData._id}`, questionData);
 }
 
 export const updateAssignment = (questionId) => {

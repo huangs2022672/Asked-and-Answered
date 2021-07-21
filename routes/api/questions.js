@@ -95,6 +95,7 @@ router.patch('/:id',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const {errors, isValid} = validateQuestionInput(req.body)
+        console.log(req.body.title)
         if (!isValid) {
             return res.status(400).json(errors)
         }

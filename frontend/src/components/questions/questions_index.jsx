@@ -57,30 +57,53 @@ class QuestionsIndex extends React.Component {
   }
 
   currentView() {
-    const { questions, deleteQuestion } = this.props
+    const { questions, deleteQuestion, updateQuestion, updateAssignment, updateResolvedStatus } = this.props
     if (this.state.currentTab === "unassigned") {
       return questions.map( question => {
           return (
-            <QuestionIndexItem question={question} deleteQuestion={deleteQuestion}/>
-
+            <QuestionIndexItem 
+              question={question} 
+              deleteQuestion={deleteQuestion} 
+              updateQuestion={updateQuestion} 
+              updateAssignment={updateAssignment}
+              updateResolvedStatus={updateResolvedStatus}
+            />
           )
         })
     } else if (this.state.currentTab === "pending") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem 
+            question={question}  
+            deleteQuestion={deleteQuestion} 
+            updateQuestion={updateQuestion} 
+            updateAssignment={updateAssignment}
+            updateResolvedStatus={updateResolvedStatus}
+          />
         )
       })
     } else if (this.state.currentTab === "mine") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem 
+            question={question}  
+            deleteQuestion={deleteQuestion} 
+            updateQuestion={updateQuestion} 
+            updateAssignment={updateAssignment}
+            updateResolvedStatus={updateResolvedStatus}
+          />
         )
       })
     } else if (this.state.currentTab === "resolved") {
       return questions.map( question => {
         return (
-          <QuestionIndexItem question={question} />
+          <QuestionIndexItem 
+            question={question}  
+            deleteQuestion={deleteQuestion} 
+            updateQuestion={updateQuestion}
+            updateAssignment={updateAssignment}
+            updateResolvedStatus={updateResolvedStatus}
+          />
         )
       })
     }
