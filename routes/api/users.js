@@ -51,11 +51,10 @@ router.post('/register', (req, res) => {
                             })
                         })
                     })
-
-            })
+                })
             })
         }
-        })
+    })
 })
 
 router.post("/login", (req, res) => {
@@ -97,4 +96,21 @@ router.post("/login", (req, res) => {
             })
         })
 })
+
+// WORKING
+router.get('/', (req, res) => {
+    User.find({})
+    .then(users => res.json(users))
+    .catch(err => res.status(404).json({ error: "something went wrong"}))
+});
+
+// WORKING
+router.delete('/:id',
+passport.authenticate("jwt", { session: false }),
+(req, res) => {
+    User.findByIdAndDelete(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(404).json({nouserfound: 'No user found'}))
+});
+
 module.exports = router
