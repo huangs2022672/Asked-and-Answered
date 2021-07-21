@@ -12,10 +12,14 @@ export const receiveQuestions = questions => ({
     questions
 });
 
-export const receiveQuestion = question => ({
-    type: RECEIVE_QUESTION,
-    question
-});
+export const receiveQuestion = question => {
+    debugger // 2
+    return {
+        type: RECEIVE_QUESTION,
+        question
+
+    }
+};
 
 export const removeQuestion = questionId => ({
     type: REMOVE_QUESTION,
@@ -63,8 +67,12 @@ export const fetchQuestion = (questionId) => dispatch => {
 }
 
 export const createQuestion = (question) => dispatch => {
+    // debugger
     QuestionAPIUtil.createQuestion(question)
-        .then(question => dispatch(receiveQuestion(question)))
+        .then(payload =>  {
+            debugger // 1
+            return dispatch(receiveQuestion(payload))
+        })
         .catch(err => dispatch(receiveErrors(err)))
 }
 

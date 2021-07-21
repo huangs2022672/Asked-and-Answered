@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import QuestionsIndex from './questions_index';
-import {fetchUnassigned, fetchUserQuestions, fetchResolved, fetchPending} from '../../actions/question_actions';
+import {fetchUnassigned, fetchUserQuestions, fetchResolved, fetchPending, createQuestion, deleteQuestion} from '../../actions/question_actions';
 
 
 const mapStateToProps = (state) => {
@@ -12,11 +12,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+    // debugger
     return {
         fetchUnassigned: () => dispatch(fetchUnassigned()),
         fetchUserQuestions: userId => dispatch(fetchUserQuestions(userId)),
         fetchResolved: () => dispatch(fetchResolved()),
-        fetchPending: () => dispatch(fetchPending())
+        fetchPending: () => dispatch(fetchPending()),
+        createQuestion: question => dispatch(createQuestion(question)),
+        deleteQuestion: questionId => dispatch(deleteQuestion(questionId))
     };
 }
 

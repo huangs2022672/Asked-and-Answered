@@ -1,5 +1,4 @@
 import React from 'react'
-import { fetchUnassigned } from '../../actions/question_actions'
 import './questions_index.css'
 import QuestionIndexItem from './questions_index_item'
 
@@ -7,16 +6,37 @@ class QuestionsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      title: "",
+      body: "",
       currentTab: "unassigned"
     }
     this.handleFetchPending = this.handleFetchPending.bind(this);
     this.handleFetchUnassigned = this.handleFetchUnassigned.bind(this);
     this.handleFetchResolved = this.handleFetchResolved.bind(this);
     this.handleUserQuestions = this.handleUserQuestions.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
     this.props.fetchUnassigned()
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    // debugger
+    this.props.createQuestion(this.state)
+    this.setState({ 
+      title: "", 
+      body: ""
+    })    
+      // .then( () => this.setState({ 
+      //   title: "", 
+      //   body: ""
+      // }))    
+  }
+
+  handleUpdate(field){
+    return e => this.setState({ [field]: e.currentTarget.value })
   }
 
   handleFetchPending(){
@@ -32,17 +52,17 @@ class QuestionsIndex extends React.Component {
     this.props.fetchResolved()
   }
   handleUserQuestions(){
-    debugger
     this.setState({currentTab: "mine"});
     this.props.fetchUserQuestions(this.props.current_user.id)
   }
 
   currentView() {
-    const { questions } = this.props
+    const { questions, deleteQuestion } = this.props
     if (this.state.currentTab === "unassigned") {
       return questions.map( question => {
           return (
-            <QuestionIndexItem question={question} />
+            <QuestionIndexItem question={question} deleteQuestion={deleteQuestion}/>
+
           )
         })
     } else if (this.state.currentTab === "pending") {
@@ -104,8 +124,20 @@ class QuestionsIndex extends React.Component {
 
           <div className="questions__index__form">
             <form onSubmit={this.handleSubmit}>
-              <input type="text" />
-              <textarea ></textarea>
+              <label> Title:
+                <input 
+                  type="text" 
+                  value={this.state.title} 
+                  onChange={this.handleUpdate("title")}
+                />
+              </label>
+              <label>Description:
+                <textarea 
+                  value={this.state.body} 
+                  onChange={this.handleUpdate("body")}>  
+                </textarea>
+              </label>
+              <button>Ask a Question</button>
             </form>
           </div>
         </div>
