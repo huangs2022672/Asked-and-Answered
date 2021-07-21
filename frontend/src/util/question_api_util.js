@@ -38,9 +38,3 @@ export const updateResolvedStatus = (questionId) => {
 export const deleteQuestion = (questionId) => {
     return axios.delete(`api/questions/${questionId}`);
 }
-
-
-
-
-
-
