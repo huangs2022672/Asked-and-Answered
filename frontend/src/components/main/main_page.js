@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './main_page.css';
+import QuestionsIndexContainer from '../questions/questions_index_container';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -16,10 +17,10 @@ class MainPage extends React.Component {
     ensureLoggedin(){
         if(this.props.loggedIn){
             return(
-                <div>
-                    <h1>Question index container goes here</h1>  
+                <div>               
                     <h1 className="welcome_user">Welcome {this.props.session.user.name}</h1>
-                    <button className="mainbtn" onClick={this.logoutUser}>Logout</button> 
+                    <button className="mainbtn" onClick={this.logoutUser}>Logout</button>
+                    <QuestionsIndexContainer/> 
                 </div>
             )
         } else {
@@ -40,6 +41,7 @@ class MainPage extends React.Component {
             <p className="main_logo">Asked & Answered</p>
             <div>
                 {this.ensureLoggedin()}
+           
             </div>
         </div>
         </>
