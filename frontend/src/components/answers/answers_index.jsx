@@ -43,7 +43,7 @@ class AnswersIndex extends React.Component {
             )
         } else {   
             const {answers, users} = this.props;
-            debugger
+            // debugger
             return (
     
                 <>

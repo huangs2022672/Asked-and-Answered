@@ -7,8 +7,8 @@ class QuestionIndexItem extends React.Component {
         this.props.fetchAnswers(this.props.question._id)
     }
     render() {
-        const {question, users} = this.props
-        debugger
+        const {question, users} = this.props;
+        // debugger
         return (
             <div>
                 <div>

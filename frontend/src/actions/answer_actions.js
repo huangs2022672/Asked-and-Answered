@@ -6,7 +6,7 @@ export const REMOVE_ANSWER = 'REMOVE_ANSWER'
 export const RECEIVE_ANSWER_ERRORS = 'RECEIVE_ANSWER_ERRORS'
 
 export const receiveAnswers = answers => {
-    debugger
+    // debugger
     return{
         type: RECEIVE_ANSWERS,
         answers
@@ -32,7 +32,7 @@ export const receiveAnswerErrors = errors => ({
 export const fetchAnswers = (questionId) => dispatch => (
     AnswerAPIUtil.fetchAnswers(questionId)
         .then(answers => {
-            debugger
+            // debugger
             return(dispatch(receiveAnswers(answers)))
         }
 ));
