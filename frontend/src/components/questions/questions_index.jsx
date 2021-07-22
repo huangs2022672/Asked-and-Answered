@@ -1,10 +1,10 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
-
-import '../../css/general-tags.css'
-import './css/questions_index.css'
-import './css/questions_index_form.css'
 import AnswersIndexContainer from '../answers/answers_index_container'
+
+import '../../css/general-tags.scss'
+import './css/questions_index.scss'
+import './css/questions_index_form.scss'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
@@ -22,8 +22,8 @@ class QuestionsIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUsers();
-    this.props.fetchUnassigned();
+    this.props.fetchUnassigned()
+    this.props.fetchAllUsers()
   }
 
   handleSubmit(e){
@@ -43,7 +43,7 @@ class QuestionsIndex extends React.Component {
   handleFetchPending(){
     this.setState({currentTab: "pending"});
     this.props.fetchPending();
-     if (this.props.questionShow) {
+    if (this.props.questionShow) {
       this.props.questionShowStatus();
     }
   }
@@ -71,14 +71,16 @@ class QuestionsIndex extends React.Component {
 
 
   currentView() {
-    const { questions } = this.props;
-
+    const { questions, users } = this.props
+    debugger
     return (
       questions.map(question => {
         return (
           <QuestionIndexItemContainer
             question={question} 
             currentTab={this.state.currentTab}
+            users={users}
+            key={`question-${question._id}`}
           />
         )
       })
@@ -166,7 +168,6 @@ class QuestionsIndex extends React.Component {
           <div className="questions__index__show">
             <div>
               <AnswersIndexContainer users={users}/>
-
             </div>
           </div>
         ) : null}

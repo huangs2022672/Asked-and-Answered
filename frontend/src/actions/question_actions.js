@@ -14,7 +14,7 @@ export const receiveQuestions = questions => ({
 });
 
 export const receiveQuestion = question => {
-    debugger // 2
+    // debugger // 2
     return {
         type: RECEIVE_QUESTION,
         question

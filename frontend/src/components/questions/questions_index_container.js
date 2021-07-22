@@ -5,10 +5,10 @@ import {
     fetchUserQuestions, 
     fetchResolved, 
     fetchPending, 
-    createQuestion,
+    createQuestion, 
     questionShowStatus
 } from '../../actions/question_actions';
-import { fetchUsers } from '../../actions/session_actions';
+import {fetchAllUsers} from '../../actions/user_actions'
 
 const mapStateToProps = (state) => {
     return {
@@ -26,10 +26,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchResolved: () => dispatch(fetchResolved()),
         fetchPending: () => dispatch(fetchPending()),
         createQuestion: question => dispatch(createQuestion(question)),
-        fetchUsers: () => dispatch(fetchUsers()),
-        questionShowStatus: () => dispatch(questionShowStatus())
-        
-        
+        questionShowStatus: () => dispatch(questionShowStatus()),
+        fetchAllUsers: users => dispatch(fetchAllUsers(users))
     };
 }
 

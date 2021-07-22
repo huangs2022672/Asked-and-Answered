@@ -1,10 +1,16 @@
-import { RECEIVE_USERS } from "../../actions/session_actions";
+import { RECEIVE_ALL_USERS, RECEIVE_USERS_ERRORS, REMOVE_USERS_ERRORS } from "../../actions/user_actions";
 
-export default function(state = {}, action) {
-    switch (action.type) {
-    case RECEIVE_USERS:
-        return action.users
+const usersReducer = (state = {}, action) => {
+  Object.freeze(state)
+  let newState = Object.assign({}, state)
+
+  switch(action.type) {
+    case RECEIVE_ALL_USERS:
+        newState = Object.assign({}, state, action.users)
+        return newState;
     default:
-        return state;
-    }
+      return state
+  }
 }
+
+export default usersReducer;
