@@ -23,8 +23,8 @@ class QuestionsIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUnassigned()
-    this.props.fetchAllUsers()
+    this.props.fetchUnassigned();
+    this.props.fetchAllUsers();
   }
 
   handleSubmit(e){
