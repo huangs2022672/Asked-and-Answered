@@ -1,21 +1,28 @@
 import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
 
 class Search extends React.Component {
     constructor(props){
         super(props)
+
+        this.state = {
+            searchContent: ""
+        }
+
     }
 
-    handleSubmit(){
-        
+
+    updateText(field){
+       return e => (this.setState({ [field]: e.currentTarget.value }))
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" /> 
-                    <button>Submit</button>
-                </form>
+                <input type="text" value={this.state.searchContent} onChange={this.updateText("searchContent")}/> 
+                <Link to={{ pathname: `questions/search/${this.state.searchContent}`, state: { searchContent: this.state.searchContent }} } >
+                    <button>Submit</button> 
+                </Link>
             </div>
         )
     }

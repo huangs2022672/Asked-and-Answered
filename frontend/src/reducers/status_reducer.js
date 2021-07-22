@@ -7,9 +7,9 @@ const statusReducer = (state = {}, action) => {
   switch(action.type) {
     case QUESTION_SHOW_STATUS:
       if (state.questionShow) {
-        newState = { questionShow: false }
+        newState = { questionShow: false  }
       } else {
-        newState = { questionShow: true }
+        newState = { questionShow: true, questionId: action.questionId}
       }
       return newState
     default:

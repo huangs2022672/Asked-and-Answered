@@ -4,7 +4,17 @@
     color: black;
     font-size: 36px;
     font-family: 'Luckiest Guy', cursive;
+    width: 270px;
+    float: middle;
+    /* border: 1px solid black; */
+    position: fixed;
+    /* padding: 50px; */
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
 }
+   
+    
 
 .login-form-nav-bar a{
     text-decoration: none;

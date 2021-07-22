@@ -92,10 +92,8 @@ class QuestionIndexItem extends React.Component {
     render() {
         const {question, users, current_user} = this.props
         let author 
-        debugger
-        if (users && question) {
-            debugger
-            users.forEach( user => {
+        if (users.data && question) {
+            users.data.forEach( user => {
                  if (user._id === question.author) {
                     author = user
                 }

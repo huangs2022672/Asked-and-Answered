@@ -1,4 +1,4 @@
-import Question from '../../../models/Question';
+// import Question from '../../../models/Question';
 import * as QuestionAPIUtil from '../util/question_api_util';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -15,7 +15,7 @@ export const receiveQuestions = questions => ({
 });
 
 export const receiveQuestion = question => {
-    debugger // 2
+    // debugger // 2
     return {
         type: RECEIVE_QUESTION,
         question
@@ -36,8 +36,9 @@ export const removeErrors = () => ({
     type: REMOVE_QUESTION_ERRORS,
 });
 
-export const questionShowStatus = () => ({
+export const questionShowStatus = (questionId) => ({
     type: QUESTION_SHOW_STATUS,
+    questionId
 })
 
 export const fetchResolved = () => dispatch => {

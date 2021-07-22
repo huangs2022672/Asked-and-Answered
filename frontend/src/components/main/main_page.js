@@ -20,7 +20,6 @@ class MainPage extends React.Component {
                 <div>               
                     <h1 className="welcome_user">Welcome {this.props.session.user.name}</h1>
                     <button className="mainbtn" onClick={this.logoutUser}>Logout</button>
-                    {/* <QuestionsIndexContainer/>  */}
                 </div>
             )
         } else {
@@ -38,7 +37,7 @@ class MainPage extends React.Component {
         return (
             <>
         <div className="main_page">
-            <h1 className="main_logo">Asked & Answered</h1>
+            <p className="main_logo">Asked & Answered</p>
             <div>
                 {this.ensureLoggedin()}
            
