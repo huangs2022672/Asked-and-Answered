@@ -22,6 +22,7 @@ class QuestionsIndex extends React.Component {
 
   componentDidMount(){
     this.props.fetchUnassigned()
+    this.props.fetchAllUsers()
   }
 
   handleSubmit(e){
@@ -56,7 +57,7 @@ class QuestionsIndex extends React.Component {
   }
 
   currentView() {
-    const { questions } = this.props
+    const { questions, users } = this.props
 
     return (
       questions.map(question => {
@@ -64,6 +65,7 @@ class QuestionsIndex extends React.Component {
           <QuestionIndexItemContainer
             question={question} 
             currentTab={this.state.currentTab}
+            users={users}
           />
         )
       })
@@ -151,7 +153,6 @@ class QuestionsIndex extends React.Component {
           <div className="questions__index__show">
             <div>
               questions__index__show
-
             </div>
           </div>
         ) : null}
