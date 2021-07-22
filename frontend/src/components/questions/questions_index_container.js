@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
 import QuestionsIndex from './questions_index';
-import {fetchUnassigned, fetchUserQuestions, fetchResolved, fetchPending} from '../../actions/question_actions';
-import { fetchUsers } from '../../actions/session_actions';
-import {fetchAnswers, fetchAnswer, createAnswer, updateAnswer, deleteAnswer} from '../../actions/answer_actions';
-
+import {
+    fetchUnassigned, 
+    fetchUserQuestions, 
+    fetchResolved, 
+    fetchPending, 
+    createQuestion 
+} from '../../actions/question_actions';
+import { fetchUsers } from '../../actions/session_actions'
 
 const mapStateToProps = (state) => {
     return {
         questions: state.entities.questions.data,
         current_user: state.session.user,
+        questionShowStatus: state.status.questionShow,
         users: state.entities.users
     };
 };
@@ -19,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
         fetchUserQuestions: userId => dispatch(fetchUserQuestions(userId)),
         fetchResolved: () => dispatch(fetchResolved()),
         fetchPending: () => dispatch(fetchPending()),
-        fetchUsers: () => dispatch(fetchUsers()),
-        fetchAnswers:(questionId)=> dispatch(fetchAnswers(questionId))
+        createQuestion: question => dispatch(createQuestion(question)),
+        fetchUsers: () => dispatch(fetchUsers())
     };
 }
 

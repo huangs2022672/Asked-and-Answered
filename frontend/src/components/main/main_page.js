@@ -20,7 +20,7 @@ class MainPage extends React.Component {
                 <div>               
                     <h1 className="welcome_user">Welcome {this.props.session.user.name}</h1>
                     <button className="mainbtn" onClick={this.logoutUser}>Logout</button>
-                    <QuestionsIndexContainer/> 
+                    {/* <QuestionsIndexContainer/>  */}
                 </div>
             )
         } else {

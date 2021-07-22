@@ -9,17 +9,12 @@ class AnswersIndex extends React.Component {
             body:""
         };
         this.updateBody = this.updateBody.bind(this);
-        // this.props.fetchAnswers(this.props.question._id)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount(){
-        
-        this.props.fetchAnswers(this.props.question._id)
+        this.props.fetchAnswers(this.props.question[0]._id)
     }
-
-    // componentDidUpdate () {
-    //     this.props.fetchAnswers(this.props.question._id)
-    // }
 
     updateBody(e) {
         e.preventDefault();
@@ -30,45 +25,51 @@ class AnswersIndex extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createAnswer(this.props.question._id, this.state);
+        debugger
+        this.props.createAnswer(this.props.question[0]._id, this.state);
     }
 
-
-
-    render () {
-        
-        if (this.props.answers.length ===0){
+    renderAnswers(){
+        debugger
+        if (this.props.answers.length === 0){
             return(
-                <div>Loading...</div>
+                <div></div>
             )
-        } else {   
-            const {answers, users} = this.props;
-            // debugger
-            return (
-    
-                <>
+        } else {
+            const {answers, users} = this.props
+            return(
                 <div>
                     { answers[0].map(answer => (<AnswersItem
                         users={users}
                         answer={answer}
                         key={answer._id} />))
-                 
                     }
                 </div>
-    
-                <form onSubmit={this.handleSubmit}>
-                    <textarea value={this.state.body} id="" cols="30" rows="10"
-                    onchange={this.updateBody} />
-    
-                    <button type="submit" >Submit</button>
-                </form>
-                </>
-    
             )
         }
     }
 
-
+    render () {  
+        const {title, body} = this.props.question[0]
+        return(
+            <div>
+                <div>
+                    <div>{title}</div>
+                    <div>{body}</div>
+                </div>
+                <div>
+                    {this.renderAnswers()}
+                </div>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <textarea value={this.state.body} id="" cols="30" rows="5"
+                        onChange={this.updateBody} />
+                        <button type="submit" >Submit</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
 
 }
 

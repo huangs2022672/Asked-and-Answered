@@ -5,6 +5,7 @@ export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 export const RECEIVE_QUESTION_ERRORS = "RECEIVE_QUESTION_ERRORS";
 export const REMOVE_QUESTION_ERRORS = "REMOVE_QUESTION_ERRORS";
+export const QUESTION_SHOW_STATUS = "QUESTION_SHOW_STATUS";
 
 
 export const receiveQuestions = questions => ({
@@ -12,10 +13,13 @@ export const receiveQuestions = questions => ({
     questions
 });
 
-export const receiveQuestion = question => ({
-    type: RECEIVE_QUESTION,
-    question
-});
+export const receiveQuestion = question => {
+    debugger // 2
+    return {
+        type: RECEIVE_QUESTION,
+        question
+    }
+};
 
 export const removeQuestion = questionId => ({
     type: REMOVE_QUESTION,
@@ -31,63 +35,90 @@ export const removeErrors = () => ({
     type: REMOVE_QUESTION_ERRORS,
 });
 
+export const questionShowStatus = (questionId) => ({
+    type: QUESTION_SHOW_STATUS,
+    questionId
+})
 
 export const fetchResolved = () => dispatch => {
-    QuestionAPIUtil.fetchResolved()
-        .then(questions => dispatch(receiveQuestions(questions)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.fetchResolved()
+            .then(questions => dispatch(receiveQuestions(questions)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const fetchPending = () => dispatch => {
-    QuestionAPIUtil.fetchPending()
-        .then(questions => dispatch(receiveQuestions(questions)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.fetchPending()
+            .then(questions => dispatch(receiveQuestions(questions)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const fetchUnassigned = () => dispatch => {
-    QuestionAPIUtil.fetchUnassigned()
-        .then(questions => dispatch(receiveQuestions(questions)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.fetchUnassigned()
+            .then(questions => dispatch(receiveQuestions(questions)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const fetchUserQuestions = (userId) => dispatch => {
-    QuestionAPIUtil.fetchUserQuestions(userId)
-        .then(questions => dispatch(receiveQuestions(questions)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.fetchUserQuestions(userId)
+            .then(questions => dispatch(receiveQuestions(questions)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const fetchQuestion = (questionId) => dispatch => {
-    QuestionAPIUtil.fetchQuestion(questionId)
-        .then(question => dispatch(receiveQuestion(question)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.fetchQuestion(questionId)
+            .then(question => dispatch(receiveQuestion(question)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const createQuestion = (question) => dispatch => {
-    QuestionAPIUtil.createQuestion(question)
-        .then(question => dispatch(receiveQuestion(question)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.createQuestion(question)
+            .then(payload =>  {
+                // debugger // 1
+                return dispatch(receiveQuestion(payload))
+            })
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const updateQuestion = (question) => dispatch => {
-    QuestionAPIUtil.updateQuestion(question)
-        .then(question => dispatch(receiveQuestion(question)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.updateQuestion(question)
+            .then(question => dispatch(receiveQuestion(question)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const updateAssignment = (questionId) => dispatch => {
-    QuestionAPIUtil.updateAssignment(questionId)
-        .then(question => dispatch(receiveQuestion(question)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.updateAssignment(questionId)
+            .then(question => dispatch(receiveQuestion(question)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const updateResolvedStatus = (questionId) => dispatch => {
-    QuestionAPIUtil.updateResolvedStatus(questionId)
-        .then(question => dispatch(receiveQuestion(question)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.updateResolvedStatus(questionId)
+            .then(question => dispatch(receiveQuestion(question)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }
 
 export const deleteQuestion = (questionId) => dispatch => {
-    QuestionAPIUtil.deleteQuestion(questionId)
-        .then( () => dispatch(removeQuestion(questionId)))
-        .catch(err => dispatch(receiveErrors(err)))
+    return (
+        QuestionAPIUtil.deleteQuestion(questionId)
+            .then( () => dispatch(removeQuestion(questionId)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
 }

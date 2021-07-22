@@ -1,16 +1,35 @@
+div.question__index {
+  border: 1px solid red;
+  display: flex;
+
+}
+
+.questions__index__show {
+  border: 1px solid rgb(250, 192, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  margin: 50px auto;
+  font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+
 .questions-index-main {
   border: 1px solid green;
   display: block;
   width: 80vw;
   margin: 50px auto;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .questions-index-tabs {
   border: 1px solid aquamarine;
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content:left; */
 
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .questions-index-tabs div {
@@ -18,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   box-sizing: border-box;
@@ -32,6 +51,8 @@
 .questions-index-view {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 500px;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 400px;
 }

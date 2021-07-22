@@ -3,7 +3,8 @@ import {fetchAnswers, fetchAnswer, createAnswer, updateAnswer, deleteAnswer} fro
 import {connect} from 'react-redux';
 
 const mSTP =(state) => ({
-    answers: Object.values(state.entities.answers)
+    answers: Object.values(state.entities.answers),
+    question: state.entities.questions.data.filter(question => question._id === state.status.questionId)
 });
 
 const mDTP = (dispatch) => (
