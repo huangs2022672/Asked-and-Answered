@@ -1,5 +1,6 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
+import Search from '../search/search';
 import AnswersIndexContainer from '../answers/answers_index_container'
 
 import '../../css/general-tags.scss'
@@ -72,7 +73,6 @@ class QuestionsIndex extends React.Component {
 
   currentView() {
     const { questions, users } = this.props
-    debugger
     return (
       questions.map(question => {
         return (
@@ -118,6 +118,7 @@ class QuestionsIndex extends React.Component {
 
     return (
       <div className="question__index">
+        <Search questions={questions} users={users}/>
         <div className="questions-index-main">
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (

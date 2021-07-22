@@ -1,3 +1,4 @@
+// import Question from '../../../models/Question';
 import * as QuestionAPIUtil from '../util/question_api_util';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -48,6 +49,7 @@ export const fetchResolved = () => dispatch => {
     )
 }
 
+
 export const fetchPending = () => dispatch => {
     return (
         QuestionAPIUtil.fetchPending()
@@ -67,6 +69,14 @@ export const fetchUnassigned = () => dispatch => {
 export const fetchUserQuestions = (userId) => dispatch => {
     return (
         QuestionAPIUtil.fetchUserQuestions(userId)
+            .then(questions => dispatch(receiveQuestions(questions)))
+            .catch(err => dispatch(receiveErrors(err)))
+    )
+}
+
+export const fetchAllQuestions = () => dispatch => {
+    return (
+        QuestionAPIUtil.fetchAllQuestions()
             .then(questions => dispatch(receiveQuestions(questions)))
             .catch(err => dispatch(receiveErrors(err)))
     )
