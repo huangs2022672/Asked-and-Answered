@@ -5,6 +5,7 @@ const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const passport = require('passport');
 const users = require("./routes/api/users");
+const questions = require('./routes/api/questions')
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 app.use("/api/users", users)
+app.use("/api/questions", questions)
 
 
 const port = process.env.PORT || 5000;

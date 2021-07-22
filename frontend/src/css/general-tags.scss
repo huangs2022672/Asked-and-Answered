@@ -1,0 +1,58 @@
+input, textarea, button {
+  font-family: 'Source Sans Pro', sans-serif;
+  box-sizing: border-box;
+}
+
+input, textarea {
+  width: 90%;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid rgba(0,0,0,0.15);
+
+  margin: 0 5%;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border: 2px solid #007a00;
+}
+
+input {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  min-height: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 3px 10px;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+  margin-bottom: 20px;
+  min-height: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 10px;
+}
+
+button {
+
+
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.5); 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgba(83, 238, 98, 0.5); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 143, 21, 0.8); 
+}

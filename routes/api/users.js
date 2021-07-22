@@ -8,13 +8,12 @@ const passport = require('passport');
 const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login')
 
-router.get('/current', passport.authenticate('jwt', {session: false}, (req, res) => {
-    res.json({
-        id: req.user.id,
-        name: req.user.name,
-        email: req.user.email
-    });
-}))
+// router.get('/current', passport.authenticate('jwt', {session: false}, (req, res) => {
+//     res.json({
+//         id: req.user.id,
+//         name: req.user.name,
+//     });
+// }))
 
 router.get("/test", (req, res) => res.json({msg: "This is the users route"}))
 
@@ -43,7 +42,7 @@ router.post('/register', (req, res) => {
                 newUser.password = hash;
                 newUser.save()
                     .then(user => {
-                        const payload = {id: user.id, name: user.name};
+                        const payload = {id: user.id, name: user.name, role: user.role};
 
                         jwt.sign(payload, keys.secretOrKey, {expiresIn: 3600}, (err, token) =>{
                             res.json({
@@ -52,11 +51,10 @@ router.post('/register', (req, res) => {
                             })
                         })
                     })
-
-            })
+                })
             })
         }
-        })
+    })
 })
 
 router.post("/login", (req, res) => {
@@ -81,7 +79,7 @@ router.post("/login", (req, res) => {
         bcrypt.compare(password, user.password)
             .then(isMatch => {
             if (isMatch) {
-                const payload = {id: user.id, name: user.name};
+                const payload = {id: user.id, name: user.name, role: user.role};
                 jwt.sign(
                     payload,
                     keys.secretOrKey,
@@ -98,4 +96,21 @@ router.post("/login", (req, res) => {
             })
         })
 })
+
+// WORKING
+router.get('/', (req, res) => {
+    User.find({})
+    .then(users => res.json(users))
+    .catch(err => res.status(404).json({ error: "something went wrong"}))
+});
+
+// WORKING
+router.delete('/:id',
+passport.authenticate("jwt", { session: false }),
+(req, res) => {
+    User.findByIdAndDelete(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(404).json({nouserfound: 'No user found'}))
+});
+
 module.exports = router
