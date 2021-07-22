@@ -9,14 +9,14 @@ const answersReducer = (state = {}, action) => {
         case RECEIVE_ANSWERS:
             return action.answers;
         case RECEIVE_ANSWER:
-            newState = { data: newState.data.concat(action.answer.data) }
-            return newState 
+            newState = { data: newState.data.concat(action.answer.data) };
+            return newState; 
         case REMOVE_ANSWER:
-            delete newState[action.answerId]
-            return newState
+            newState = { data: state.data.filter(answer => answer._id !== action.answerId) };
+            return newState;
         default:
             return state;
     }
-}
+};
 
 export default answersReducer;

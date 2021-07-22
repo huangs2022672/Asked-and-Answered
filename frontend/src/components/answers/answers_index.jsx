@@ -42,7 +42,11 @@ class AnswersIndex extends React.Component {
                     { answers[0].map(answer => (<AnswersItem
                         users={users}
                         answer={answer}
-                        key={answer._id} />))
+                        key={answer._id}
+                        currentUser={this.props.currentUser}
+                        updateAnswer={this.props.updateAnswer}
+                        deleteAnswer={this.props.deleteAnswer}
+                        questionId={this.props.question[0]._id} />))
                     }
                 </div>
             )

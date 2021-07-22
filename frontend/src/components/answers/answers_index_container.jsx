@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 
 const mSTP =(state) => ({
     answers: Object.values(state.entities.answers),
-    question: state.entities.questions.data.filter(question => question._id === state.status.questionId)
+    question: state.entities.questions.data.filter(question => question._id === state.status.questionId),
+    currentUser: state.session.user
+
 });
 
 const mDTP = (dispatch) => (

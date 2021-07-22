@@ -1,16 +1,62 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const AnswersItem =({answer, users}) => {
 
-    // const userNameHandle = ()=>{   if (users) {const usersN = Object.keys(users).map(key=>users[key]);
-    // const user = usersN[0].filter(userOb=>userOb._id===answer.author)[0];
-    // return (user.name);}};
+
+const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, questionId}) => {
+
+const [editing, setEditing] = useState(false);
+const [body, setBody] = useState(answer.body);
+
+const handleSubmit=(e)=>{
+    
+    e.preventDefault();
+    const newAnswer = Object.assign({},answer, body);
+        
+    updateAnswer(questionId, newAnswer);
+    
+    
+};
+
+const handleEdit =()=> {
+
+setEditing(true);
+
+};
+
+
+const edit_area = (editing === true) ? (
+    <>
+    <form className="question-form"
+                        onSubmit={handleSubmit}>
+                            <label>
+                                <textarea 
+                                    value={body} 
+                                    onChange={(e)=>setBody(e.target.value)}>  
+                                </textarea>
+                            </label>
+                            <button type="submit">Update</button>
+                        </form>
+    </>)
+ : (null)
+
+
+
+    
     const renderUser = () => {
-        let user = users.data.filter(user => user._id === answer.author)
-        return user[0].name
-    }
+        let user = users.data.filter(user => user._id === answer.author);
+        return user[0].name;
+    };
 
-    debugger
+
+
+    const edit_delete_buttons = (currentUser.id===answer.author) ? (<>
+    <button className="question-delete"
+                            onClick={()=>deleteAnswer(questionId, answer._id)}>Delete</button>
+                        <button className="question-edit"
+                            onClick={ handleEdit} >Edit</button>
+                            {edit_area}</>):(null)
+
+    // debugger
     return (
         <>
             <ul>
@@ -22,6 +68,8 @@ const AnswersItem =({answer, users}) => {
                 </div>
                 <div>{answer.date}</div>         
             </ul>
+            {edit_delete_buttons}
+
         </>
 )
 }
