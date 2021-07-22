@@ -4,15 +4,22 @@ import React, {useState} from 'react';
 
 const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, questionId}) => {
 
+
+    
+    
+
 const [editing, setEditing] = useState(false);
 const [body, setBody] = useState(answer.body);
 
 const handleSubmit=(e)=>{
     
     e.preventDefault();
-    const newAnswer = Object.assign({},answer, body);
+    const newAnswer = Object.assign({},{id:answer._id, body});
         
     updateAnswer(questionId, newAnswer);
+    setEditing(false);
+    
+    
     
     
 };

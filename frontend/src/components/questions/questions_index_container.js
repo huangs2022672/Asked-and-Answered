@@ -5,15 +5,16 @@ import {
     fetchUserQuestions, 
     fetchResolved, 
     fetchPending, 
-    createQuestion 
+    createQuestion,
+    questionShowStatus
 } from '../../actions/question_actions';
-import { fetchUsers } from '../../actions/session_actions'
+import { fetchUsers } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
     return {
         questions: state.entities.questions.data,
         current_user: state.session.user,
-        questionShowStatus: state.status.questionShow,
+        questionShow: state.status.questionShow,
         users: state.entities.users
     };
 };
@@ -25,7 +26,10 @@ const mapDispatchToProps = (dispatch) => {
         fetchResolved: () => dispatch(fetchResolved()),
         fetchPending: () => dispatch(fetchPending()),
         createQuestion: question => dispatch(createQuestion(question)),
-        fetchUsers: () => dispatch(fetchUsers())
+        fetchUsers: () => dispatch(fetchUsers()),
+        questionShowStatus: () => dispatch(questionShowStatus())
+        
+        
     };
 }
 

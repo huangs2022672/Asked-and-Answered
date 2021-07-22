@@ -45,13 +45,13 @@ class QuestionIndexItem extends React.Component {
     }
 
     handleQuestionShow() {
-        debugger
-        this.props.questionShowStatus(this.props.question._id)
+      
+        this.props.questionShowStatus(this.props.question._id);
     }
 
     render() {
-        const {question} = this.props
-        debugger
+        const {question} = this.props;
+      
         return (
             <div className="questions-index-item">
                 {!this.state.editing ? (

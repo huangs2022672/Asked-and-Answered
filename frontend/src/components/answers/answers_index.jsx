@@ -9,11 +9,11 @@ class AnswersIndex extends React.Component {
             body:""
         };
         this.updateBody = this.updateBody.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
-        this.props.fetchAnswers(this.props.question[0]._id)
+        this.props.fetchAnswers(this.props.question[0]._id);
     }
 
     updateBody(e) {
@@ -25,12 +25,15 @@ class AnswersIndex extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        debugger
+        
         this.props.createAnswer(this.props.question[0]._id, this.state);
+        this.setState({
+            body:""
+            });
     }
 
     renderAnswers(){
-        debugger
+      
         if (this.props.answers.length === 0){
             return(
                 <div></div>

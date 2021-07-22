@@ -48,8 +48,8 @@ export const createAnswer = (questionId, answer) => dispatch => {
         (error) => dispatch(receiveAnswerErrors(error.responseJSON))
 )}
 
-export const updateAnswer = (questionId, answer) => dispatch => {
-    AnswerAPIUtil.updateAnswer(questionId, answer)
+export const updateAnswer = (questionId, answerId) => dispatch => {
+    AnswerAPIUtil.updateAnswer(questionId, answerId)
         .then(payload => dispatch(receiveAnswer(payload)),
         (error) => dispatch(receiveAnswerErrors(error.responseJSON))
 )}
