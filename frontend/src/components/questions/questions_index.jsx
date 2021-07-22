@@ -1,5 +1,6 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
+import Search from '../search/search';
 
 import '../../css/general-tags.scss'
 import './css/questions_index.scss'
@@ -99,10 +100,11 @@ class QuestionsIndex extends React.Component {
   }
 
   render() {
-    const { questions, questionsShowStatus } = this.props   
+    const { questions, questionsShowStatus,users } = this.props   
 
     return (
       <div className="question__index">
+        <Search questions={questions} users={users}/>
         <div className="questions-index-main">
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (

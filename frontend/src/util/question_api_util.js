@@ -19,6 +19,9 @@ export const fetchUserQuestions = (userId) => {
 export const fetchQuestion = (questionId) => {
     return axios.get(`api/questions/${questionId}`);
 }
+export const fetchAllQuestions = () => {
+    return axios.get(`api/questions/`);
+}
 
 export const createQuestion = (questionData) => {
     return axios.post('api/questions/', questionData);
