@@ -29,7 +29,6 @@ const mapDispatchToProps = (dispatch) => {
         fetchPending: () => dispatch(fetchPending()),
         fetchResolved: () => dispatch(fetchResolved()),
         fetchUserQuestions: userId => dispatch(fetchUserQuestions(userId))
-
     };
 }
 

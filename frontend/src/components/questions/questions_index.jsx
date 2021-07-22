@@ -72,7 +72,7 @@ class QuestionsIndex extends React.Component {
 
   currentView() {
     const { questions, users } = this.props
-    debugger
+    // debugger
     return (
       questions.map(question => {
         return (
@@ -114,7 +114,7 @@ class QuestionsIndex extends React.Component {
   }
 
   render() {
-    const { questions, questionShow, users } = this.props;   
+    const { questions, questionShow, users, current_user } = this.props;   
 
     return (
       <div className="question__index">
@@ -140,29 +140,33 @@ class QuestionsIndex extends React.Component {
           <div className="questions-index-view">
             { questions ? this.currentView() : null }
           </div>
-          <div className="questions__index__form">
-            <form className="question-create-form"
-            onSubmit={this.handleSubmit}>
-              <label className="question-title-input">
-                <input 
-                  className="question-title-input"
-                  type="text" 
-                  value={this.state.title} 
-                  onChange={this.handleUpdate("title")}
-                  placeholder="Add a title"
-                />
-              </label>
-              <label className="question-body-input">
-                <textarea
-                  className="question-body-input"
-                  value={this.state.body} 
-                  onChange={this.handleUpdate("body")}
-                  placeholder="Add a description">  
-                </textarea>
-              </label>
-              <button>Ask a Question</button>
-            </form>
-          </div>
+
+          { current_user.role === "student" ? (
+            <div className="questions__index__form">
+              <form className="question-create-form"
+              onSubmit={this.handleSubmit}>
+                <label className="question-title-input">
+                  <input 
+                    className="question-title-input"
+                    type="text" 
+                    value={this.state.title} 
+                    onChange={this.handleUpdate("title")}
+                    placeholder="Add a title"
+                  />
+                </label>
+                <label className="question-body-input">
+                  <textarea
+                    className="question-body-input"
+                    value={this.state.body} 
+                    onChange={this.handleUpdate("body")}
+                    placeholder="Add a description">  
+                  </textarea>
+                </label>
+                <button>Ask a Question</button>
+              </form>
+            </div>
+          ) : null}
+
         </div>
         { questionShow ? (
           <div className="questions__index__show">

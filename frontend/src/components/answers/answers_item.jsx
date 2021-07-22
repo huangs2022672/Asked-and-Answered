@@ -50,7 +50,7 @@ const edit_area = (editing === true) ? (
 
     
     const renderUser = () => {
-        let user = users.data.filter(user => user._id === answer.author);
+        let user = users.filter(user => user._id === answer.author);
         return user[0].name;
     };
 
