@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsEditForm from './questions_edit_form';
+import './css/questions_index_item.css'
 
 class QuestionIndexItem extends React.Component {
     constructor(props){
@@ -13,6 +13,7 @@ class QuestionIndexItem extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleAssign = this.handleAssign.bind(this);
         this.handleResolve = this.handleResolve.bind(this);
+        this.handleQuestionShow = this.handleQuestionShow.bind(this);
     }
 
     handleDelete(){
@@ -27,10 +28,9 @@ class QuestionIndexItem extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        debugger
+        // debugger
         this.props.updateQuestion(this.state)
-            this.setState({editing: false})
-        
+            .then(() => this.setState({editing: false}))                   
     }
 
     handleAssign(){
@@ -43,44 +43,58 @@ class QuestionIndexItem extends React.Component {
         const { updateResolvedStatus, question } = this.props;
         return updateResolvedStatus(question._id)
     }
-   
+
+    handleQuestionShow() {
+        this.props.questionShowStatus()
+    }
 
     render() {
         const {question} = this.props
         debugger
         return (
-            <div>
+            <div className="questions-index-item">
                 {!this.state.editing ? (
-                    <div>
-                        <li>{question.title}</li>
-                        <li>{question.body}</li>
-                        <li>{question.assigned_to ? "assigned" : "unassigned"}</li>
-                        <li>{question.resolved ? "resolved" : "unresolved"}</li>
-                        <button onClick={this.handleDelete}>Delete</button>
-                        <button onClick={ () => this.setState({editing: true})}>Edit</button>
-                        <button onClick={this.handleAssign}>Assign</button>
-                        <button onClick={this.handleResolve}>Resolve</button>
+                    <div className="question-not-editing">
+                        <div className="question-title"
+                            >{question.title}</div>
+                        <div className="question-body"
+                            >{question.body}</div>
+                        <div className="question-assigned"
+                            >{question.assigned_to ? "assigned" : "unassigned"}</div>
+                        <div className="question-resolved"
+                            >{question.resolved ? "resolved" : "unresolved"}</div>
+                        <button className="question-delete"
+                            onClick={this.handleDelete}>Delete</button>
+                        <button className="question-edit"
+                            onClick={ () => this.setState({editing: true})}>Edit</button>
+                        <button className="question-assign-button"
+                            onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN"}</button>
+                        <button className="question-resolve-button"
+                            onClick={this.handleResolve}>{question.resolved ? "UNRESOLVED" : "RESOLVED"}</button>
+                        <button className="question-show-button"
+                            onClick={this.handleQuestionShow}>Reply</button>
                     </div>
                 ) : (
                     (
-                        <div>
-                            <form onSubmit={this.handleSubmit}>
-                            <label> Title:
-                            <input 
-                              type="text" 
-                              value={this.state.title} 
-                              onChange={this.handleUpdate("title")}
-                            />
-                          </label>
-                          <label>Description:
-                            <textarea 
-                              value={this.state.body} 
-                              onChange={this.handleUpdate("body")}>  
-                            </textarea>
-                          </label>
-                          <button>Update</button>
+                    <div className="question-editing">
+                        <form className="question-form"
+                        onSubmit={this.handleSubmit}>
+                            <label>
+                                <input 
+                                    type="text" 
+                                    value={this.state.title} 
+                                    onChange={this.handleUpdate("title")}
+                                />
+                            </label>
+                            <label>
+                                <textarea 
+                                    value={this.state.body} 
+                                    onChange={this.handleUpdate("body")}>  
+                                </textarea>
+                            </label>
+                            <button>Update</button>
                         </form>
-                      </div>
+                    </div>
                     )
                 )}
             </div>

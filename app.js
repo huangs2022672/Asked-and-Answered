@@ -5,6 +5,7 @@ const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const passport = require('passport');
 const users = require("./routes/api/users");
+const questions = require('./routes/api/questions')
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {

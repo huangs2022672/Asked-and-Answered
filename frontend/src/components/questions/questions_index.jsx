@@ -1,6 +1,9 @@
 import React from 'react'
-import './questions_index.css'
-import QuestionIndexItem from './questions_index_item'
+import QuestionIndexItemContainer from './questions_index_item_container'
+
+import '../../css/general-tags.css'
+import './css/questions_index.css'
+import './css/questions_index_form.css'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
@@ -25,14 +28,10 @@ class QuestionsIndex extends React.Component {
     e.preventDefault();
     // debugger
     this.props.createQuestion(this.state)
-    this.setState({ 
-      title: "", 
-      body: ""
-    })    
-      // .then( () => this.setState({ 
-      //   title: "", 
-      //   body: ""
-      // }))    
+      .then( () => this.setState({ 
+        title: "", 
+        body: ""
+      }))    
   }
 
   handleUpdate(field){
@@ -57,116 +56,105 @@ class QuestionsIndex extends React.Component {
   }
 
   currentView() {
-    const { questions, deleteQuestion, updateQuestion, updateAssignment, updateResolvedStatus } = this.props
-    if (this.state.currentTab === "unassigned") {
-      return questions.map( question => {
-          return (
-            <QuestionIndexItem 
-              question={question} 
-              deleteQuestion={deleteQuestion} 
-              updateQuestion={updateQuestion} 
-              updateAssignment={updateAssignment}
-              updateResolvedStatus={updateResolvedStatus}
-            />
-          )
-        })
-    } else if (this.state.currentTab === "pending") {
-      return questions.map( question => {
+    const { questions } = this.props
+
+    return (
+      questions.map(question => {
         return (
-          <QuestionIndexItem 
-            question={question}  
-            deleteQuestion={deleteQuestion} 
-            updateQuestion={updateQuestion} 
-            updateAssignment={updateAssignment}
-            updateResolvedStatus={updateResolvedStatus}
+          <QuestionIndexItemContainer
+            question={question} 
+            currentTab={this.state.currentTab}
           />
         )
       })
-    } else if (this.state.currentTab === "mine") {
-      return questions.map( question => {
-        return (
-          <QuestionIndexItem 
-            question={question}  
-            deleteQuestion={deleteQuestion} 
-            updateQuestion={updateQuestion} 
-            updateAssignment={updateAssignment}
-            updateResolvedStatus={updateResolvedStatus}
-          />
-        )
-      })
-    } else if (this.state.currentTab === "resolved") {
-      return questions.map( question => {
-        return (
-          <QuestionIndexItem 
-            question={question}  
-            deleteQuestion={deleteQuestion} 
-            updateQuestion={updateQuestion}
-            updateAssignment={updateAssignment}
-            updateResolvedStatus={updateResolvedStatus}
-          />
-        )
-      })
-    }
+    )
+
+    // if (this.state.currentTab === "unassigned") {
+    //   return questions.map( question => {
+    //     return (
+    //       <QuestionIndexItem question={question} currentTab={this.state.currentTab}/>
+    //     )
+    //   })
+    // } else if (this.state.currentTab === "pending") {
+    //   return questions.map( question => {
+    //     return (
+    //       <QuestionIndexItem question={question} currentTab={this.state.currentTab}/>
+    //     )
+    //   })
+    // } else if (this.state.currentTab === "mine") {
+    //   return questions.map( question => {
+    //     return (
+    //       <QuestionIndexItem question={question} currentTab={this.state.currentTab}/>
+    //     )
+    //   })
+    // } else if (this.state.currentTab === "resolved") {
+    //   return questions.map( question => {
+    //     return (
+    //       <QuestionIndexItem question={question} currentTab={this.state.currentTab}/>
+    //     )
+    //   })
+    // }
   }
 
   render() {
-    const { questions } = this.props
-    
+    const { questions, questionsShowStatus } = this.props   
 
     return (
       <div className="question__index">
         <div className="questions-index-main">
-
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (
               "unassigned-tab selected") : ("unassigned-tab")}
             onClick={this.handleFetchUnassigned}
             >Unassigned</div>
-
             <div className={this.state.currentTab === "pending" ? (
               "pending-tab selected") : ("pending-tab")}
             onClick={this.handleFetchPending}
             >Pending</div>
-
             <div className={this.state.currentTab === "mine" ? (
               "mine-tab selected") : ("mine-tab")}
               onClick={this.handleUserQuestions}
             >Mine</div>
-
             <div className={this.state.currentTab === "resolved" ? (
               "resolved-tab selected") : ("resolved-tab")}
             onClick={this.handleFetchResolved}
             >Resolved</div>
-          </div>
-              
+          </div>              
           <div className="questions-index-view">
-            { 
-              questions ? this.currentView() : null
-            }
+            { questions ? this.currentView() : null }
           </div>
-
           <div className="questions__index__form">
-            <form onSubmit={this.handleSubmit}>
-              <label> Title:
+            <form className="question-create-form"
+            onSubmit={this.handleSubmit}>
+              <label className="question-title-input">
                 <input 
+                  className="question-title-input"
                   type="text" 
                   value={this.state.title} 
                   onChange={this.handleUpdate("title")}
+                  placeholder="Add a title"
                 />
               </label>
-              <label>Description:
-                <textarea 
+              <label className="question-body-input">
+                <textarea
+                  className="question-body-input"
                   value={this.state.body} 
-                  onChange={this.handleUpdate("body")}>  
+                  onChange={this.handleUpdate("body")}
+                  placeholder="Add a description">  
                 </textarea>
               </label>
               <button>Ask a Question</button>
             </form>
           </div>
         </div>
-        <div className="question__index__show">
-          question__index__show
-        </div>
+        { this.props.questionShowStatus ? (
+          <div className="questions__index__show">
+            <div>
+              questions__index__show
+
+            </div>
+          </div>
+        ) : null}
       </div>
     )
   }
