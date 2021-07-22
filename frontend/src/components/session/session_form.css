@@ -54,6 +54,8 @@
     background-color: #4CAF50;
     border-radius: 3px;
     border: none;
+    margin-top: 3px;
+    cursor: pointer;
 }
 
 .login-form-no-account{
