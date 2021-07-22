@@ -20,7 +20,7 @@ class Search extends React.Component {
         return (
             <div>
                 <input type="text" value={this.state.searchContent} onChange={this.updateText("searchContent")}/> 
-                <Link to={{ pathname: `questions/search/${this.state.searchContent}`, state: { searchContent: this.state.searchContent }} } >
+                <Link to={`questions/search/${this.state.searchContent}` } >
                     <button>Submit</button> 
                 </Link>
             </div>

@@ -7,8 +7,7 @@ class SearchIndexItem extends React.Component {
         this.state = {
             term: ""
         }
-
-        this.filterQuestions = this.filterQuestions.bind(this);
+        this.filteredQuestions = {}
     }
 
     componentDidMount(){
@@ -19,25 +18,21 @@ class SearchIndexItem extends React.Component {
         if (!this.props.questions) {
             return null;
         }
-        if (this.props.location) {
-            this.setState.term = this.props.location.state.searchContent;
-        }
-        debugger
-        let filteredQuestions = []
         let searchTerms = this.props.match.params.query.split(" ");
         searchTerms.forEach( searchTerm => {
             (this.props.questions.forEach( question => {
-                if (question.title.includes(searchTerm) || question.body.includes(searchTerm)) {
-                    filteredQuestions.push(question)
+                if ((question.title.includes(searchTerm) || question.body.includes(searchTerm)) && !this.filteredQuestions[question._id]) {
+                    this.filteredQuestions[question._id] = question
                 }
             })
         )})
         debugger
         return (
-            filteredQuestions.forEach(question => {
-                return question.title
-            })
-            
+            <div>
+                {Object.values(this.filteredQuestions).map(question => (
+                    <div>{question.title}</div>
+                ))}
+            </div>
         )
     }
 
@@ -45,8 +40,10 @@ class SearchIndexItem extends React.Component {
         
         return (
             <div>
-                hello
-               {this.filterQuestions()} 
+                Hello
+                <div>
+                    {this.filterQuestions()}
+                </div>
             </div>
         )
     }
