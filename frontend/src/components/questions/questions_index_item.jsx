@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/questions_index_item.css'
+import './css/questions_index_item.scss'
 
 class QuestionIndexItem extends React.Component {
     constructor(props){

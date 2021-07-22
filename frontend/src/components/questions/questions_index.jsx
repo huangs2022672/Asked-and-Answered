@@ -1,9 +1,9 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
 
-import '../../css/general-tags.css'
-import './css/questions_index.css'
-import './css/questions_index_form.css'
+import '../../css/general-tags.scss'
+import './css/questions_index.scss'
+import './css/questions_index_form.scss'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
