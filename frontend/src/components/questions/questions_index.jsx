@@ -66,6 +66,7 @@ class QuestionsIndex extends React.Component {
             question={question} 
             currentTab={this.state.currentTab}
             users={users}
+            key={`question-${question._id}`}
           />
         )
       })
