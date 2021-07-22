@@ -5,13 +5,17 @@ import {
   updateQuestion, 
   updateAssignment, 
   updateResolvedStatus,
-  questionShowStatus
+  questionShowStatus,
+  fetchUnassigned,
+  fetchPending,
+  fetchResolved,
+  fetchUserQuestions
 } from '../../actions/question_actions';
 
 const mapStateToProps = (state) => {
     return {
         current_user: state.session.user,
-        questionShowStatus: state.status.questionShow
+        questionShowStatus: state.status.questionShow,
     };
 };
 
@@ -21,7 +25,12 @@ const mapDispatchToProps = (dispatch) => {
         updateQuestion: question => dispatch(updateQuestion(question)),
         updateAssignment: questionId => dispatch(updateAssignment(questionId)),
         updateResolvedStatus: questionId => dispatch(updateResolvedStatus(questionId)),
-        questionShowStatus: () => dispatch(questionShowStatus())
+        questionShowStatus: () => dispatch(questionShowStatus()),
+        fetchUnassigned: () => dispatch(fetchUnassigned()),
+        fetchPending: () => dispatch(fetchPending()),
+        fetchResolved: () => dispatch(fetchResolved()),
+        fetchUserQuestions: userId => dispatch(fetchUserQuestions(userId))
+
     };
 }
 
