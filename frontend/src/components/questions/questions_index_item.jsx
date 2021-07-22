@@ -86,17 +86,18 @@ class QuestionIndexItem extends React.Component {
     }
 
     handleQuestionShow() {
-        this.props.questionShowStatus()
+        debugger
+        this.props.questionShowStatus(this.props.question._id);
     }
 
     render() {
         const {question, users, current_user} = this.props
         let author 
-        // debugger
-        if (users && question) {
-            // debugger
-            users.forEach( user => {
-                 if (user._id === question.author) {
+        debugger
+        if (users.data && question) {
+            debugger
+            users.data.forEach( user => {
+                if (user._id === question.author) {
                     author = user
                 }
             })

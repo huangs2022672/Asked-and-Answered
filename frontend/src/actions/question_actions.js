@@ -35,8 +35,9 @@ export const removeErrors = () => ({
     type: REMOVE_QUESTION_ERRORS,
 });
 
-export const questionShowStatus = () => ({
+export const questionShowStatus = (questionId) => ({
     type: QUESTION_SHOW_STATUS,
+    questionId
 })
 
 export const fetchResolved = () => dispatch => {

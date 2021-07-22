@@ -4,6 +4,8 @@ const Question = require('../../models/Question')
 const passport = require('passport');
 const validateQuestionInput = require('../../validation/question');
 const User = require("../../models/User");
+const Answer = require('../../models/Answer');
+const validateAnswerInput = require('../../validation/answer');
 
 
 // WORKING // test route can be removed later
@@ -106,7 +108,7 @@ router.patch('/:id',
             .then(question => {
                 // console.log(question)
                 return (
-                     res.json(question)
+                    res.json(question)
                 )
             })
             .catch(err => res.status(404).json({ error: 'cannot update question' }))
@@ -154,6 +156,61 @@ passport.authenticate("jwt", { session: false }),
         .catch(err => res.status(404).json({ error: 'cannot find question'}))
 });
 
+
+// ANSWERS MVP
+
+router.post('/:question_id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        const {errors, isValid} = validateAnswerInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+        
+        const newAnswer = new Answer ({
+            body: req.body.body,
+            author: req.user.id, 
+            question_id: req.params.question_id
+        });
+
+        newAnswer.save()
+            .then(answer => res.json(answer))
+            .catch(err => res.status(404).json({noanswerfound: 'Something went wrong!'}));
+});
+
+router.get('/:question_id/answers', (req, res) => {
+    Answer.find({question_id:req.params.question_id})
+        .then(answers => res.json(answers))
+        .catch(err => res.status(404).json({ noanswerfound: 'No answers found' }));
+});
+
+
+router.patch('/:question_id/answers/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        const {errors, isValid} = validateAnswerInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+        Answer.findByIdAndUpdate(req.params.id, {
+            body: req.body.body,
+            solution: req.body.solution
+        }, {new: true})
+            .then(answer => {
+                return (
+                    res.json(answer)
+                );
+            })
+            .catch(err => res.status(404).json({noanswerfound: 'Something went wrong!'}));
+});
+
+router.delete('/:question_id/answers/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Answer.findByIdAndDelete(req.params.id)
+            .then(answer => res.json(answer))
+            .catch(err => res.status(404).json({noanswerfound: 'No answer found'}));
+});
 
 module.exports = router
 

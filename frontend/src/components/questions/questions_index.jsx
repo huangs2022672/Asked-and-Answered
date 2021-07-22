@@ -1,5 +1,6 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
+import AnswersIndexContainer from '../answers/answers_index_container'
 
 import '../../css/general-tags.scss'
 import './css/questions_index.scss'
@@ -7,12 +8,12 @@ import './css/questions_index_form.scss'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       title: "",
       body: "",
       currentTab: "unassigned"
-    }
+    };
     this.handleFetchPending = this.handleFetchPending.bind(this);
     this.handleFetchUnassigned = this.handleFetchUnassigned.bind(this);
     this.handleFetchResolved = this.handleFetchResolved.bind(this);
@@ -32,33 +33,46 @@ class QuestionsIndex extends React.Component {
       .then( () => this.setState({ 
         title: "", 
         body: ""
-      }))    
+      }));    
   }
 
   handleUpdate(field){
-    return e => this.setState({ [field]: e.currentTarget.value })
+    return e => this.setState({ [field]: e.currentTarget.value });
   }
 
   handleFetchPending(){
     this.setState({currentTab: "pending"});
-    this.props.fetchPending()
+    this.props.fetchPending();
+    if (this.props.questionShow) {
+      this.props.questionShowStatus();
+    }
   }
   handleFetchUnassigned(){
     this.setState({currentTab: "unassigned"});
-    this.props.fetchUnassigned()
+    this.props.fetchUnassigned();
+    if (this.props.questionShow) {
+      this.props.questionShowStatus();
+    }
   }
   handleFetchResolved(){
     this.setState({currentTab: "resolved"});
-    this.props.fetchResolved()
+    this.props.fetchResolved();
+     if (this.props.questionShow) {
+      this.props.questionShowStatus();
+    }
   }
   handleUserQuestions(){
     this.setState({currentTab: "mine"});
-    this.props.fetchUserQuestions(this.props.current_user.id)
+    this.props.fetchUserQuestions(this.props.current_user.id);
+     if (this.props.questionShow) {
+      this.props.questionShowStatus();
+    }
   }
+
 
   currentView() {
     const { questions, users } = this.props
-
+    debugger
     return (
       questions.map(question => {
         return (
@@ -100,7 +114,7 @@ class QuestionsIndex extends React.Component {
   }
 
   render() {
-    const { questions, questionsShowStatus } = this.props   
+    const { questions, questionShow, users } = this.props;   
 
     return (
       <div className="question__index">
@@ -150,10 +164,10 @@ class QuestionsIndex extends React.Component {
             </form>
           </div>
         </div>
-        { this.props.questionShowStatus ? (
+        { questionShow ? (
           <div className="questions__index__show">
             <div>
-              questions__index__show
+              <AnswersIndexContainer users={users}/>
             </div>
           </div>
         ) : null}
