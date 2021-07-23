@@ -26,7 +26,7 @@ class SearchIndexItem extends React.Component {
                 }
             })
         )})
-        debugger
+        // debugger
         return (
             <div>
                 {Object.values(this.filteredQuestions).map(question => (

@@ -55,7 +55,7 @@ class MainPage extends React.Component {
     <div className="questions__index__form_main" >
             <form className="question-create-form"
             onSubmit={this.handleSubmit}>
-              <label className="question-title-input">
+              <div className="question-title-input">
                 <input 
                   className="question-title-input"
                   type="text" 
@@ -63,18 +63,16 @@ class MainPage extends React.Component {
                   onChange={this.handleUpdate("title")}
                   placeholder="Add a title"
                 />
-              </label>
-              <br />
-              <label className="question-body-input">
+              </div>
+              <div className="question-body-input">
                 <textarea
                   className="question-body-input"
                   value={this.state.body} 
                   onChange={this.handleUpdate("body")}
                   placeholder="Add a description">  
                 </textarea>
-              </label>
-              <br />
-              <button>Submit Question</button>
+              <button className="question-submit-button">Submit Question</button>
+              </div>
             </form>
           </div>
     </>)
