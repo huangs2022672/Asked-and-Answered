@@ -37,7 +37,7 @@ const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, que
 
     
     const renderUser = () => {
-        let user = users.data.filter(user => user._id === answer.author);
+        let user = users.filter(user => user._id === answer.author);
         return (user[0].name[0].toUpperCase() + user[0].name.slice(1));
     };
 
