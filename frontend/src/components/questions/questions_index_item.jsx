@@ -113,54 +113,60 @@ class QuestionIndexItem extends React.Component {
                         
                         <div className="handle-question-show"
                         onClick={this.handleQuestionShow}>
-                            <div className="question-author">{author ? (`${author.name} asks:`) : null}</div>
-                            <div className="question-title">{question.title}</div>
-                            <div className="question-body">{question.body}</div>                            
+                            <div className="question-author">{author ? (`${author.name.split(" ")[0]}`) : null}<div className="asks">asks:</div><div className="question-title">{question.title}</div></div>
+                            
+                            <div className="question-body">{question.resolved ? "[RESOLVED]" : (question.assigned_to ? "[PENDING]" : "[UNASSIGNED]")} {question.body}</div>                            
                         </div>
 
-                        <div className="question-assigned">{question.assigned_to ? (`Assigned to: ${assigned_to.name}`): "UNASSIGNED"}</div>
-                        <div className="question-resolved">{question.resolved ? "RESOLVED" : "UNRESOLVED"}</div>
-
-                        { (current_user && current_user.id === question.author) ? (
-                            <div className="user__edit__delete">
-                                <button className="question-delete" 
-                                onClick={this.handleDelete}>Delete</button>
-                                <button className="question-edit" 
-                                onClick={ () => this.setState({editing: true})}>Edit</button>
-                            </div> 
-                        ) : null}    
+                        <div className="question-status">
+                            <div className={`question-assigned-status ${question.assigned_to ? "green-status" : "yellow-status"}`}>{question.assigned_to ? (`Assigned to: ${assigned_to.name.split(" ")[0]}`): "UNASSIGNED"}</div>
+                            {/* <div className={`question-resolved-status ${question.resolved ? "green-status" : "yellow-status"}`}>{question.resolved ? "RESOLVED" : "UNRESOLVED"}</div> */}
+                        </div>
                         
-                        { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
-                            (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) ? (
-                                <button className="question-assign-button"
-                                onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN"}</button>
-                        ) : null}
+                        <div className="question-functions">
+                            { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
+                                (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) ? (
+                                    <button className="question-assign-button"
+                                    onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN"}</button>
+                            ) : null}
 
-                        { (current_user && current_user.id === question.author) || 
-                            (question.assigned_to !== null && current_user.id ===  question.assigned_to) ? (
-                                <button className="question-resolve-button"
-                                onClick={this.handleResolve}>{question.resolved ? "UNRESOLVED" : "RESOLVED"}</button>
-                        ) : null}
+                            { (current_user && current_user.id === question.author) || 
+                                (question.assigned_to !== null && current_user.id ===  question.assigned_to) ? (
+                                    <button className="question-resolve-button"
+                                    onClick={this.handleResolve}>{question.resolved ? "MARK UNRESOLVED" : "MARK RESOLVED"}</button>
+                            ) : null}
+
+                            { (current_user && current_user.id === question.author) ? (
+                                <div className="user__edit__delete">
+                                    <div className="question-edit" 
+                                    onClick={ () => this.setState({editing: true})}><span className="iconify" data-icon="bx:bxs-edit" data-inline="false"></span></div>
+                                    <div className="question-delete" 
+                                    onClick={this.handleDelete}><span className="iconify" data-icon="carbon:delete" data-inline="false"></span></div>
+                                </div> 
+                            ) : null} 
+                        </div>
 
                     </div>
                 ) : ((
                     <div className="question-editing">
                         <form className="question-form"
                         onSubmit={this.handleSubmit}>
-                            <label>
-                                <input 
+                            <div className="question-title-input">
+                                <input
+                         
                                     type="text" 
                                     value={this.state.title} 
                                     onChange={this.handleUpdate("title")}
                                 />
-                            </label>
-                            <label>
-                                <textarea 
+                            </div>
+                            <div className="question-body-input">
+                                <textarea
+                                
                                     value={this.state.body} 
                                     onChange={this.handleUpdate("body")}>  
                                 </textarea>
-                            </label>
-                            <button>Update</button>
+                                <button className="question-update-button"><span className="iconify" data-icon="dashicons:update" data-inline="false"></span></button>
+                            </div>
                         </form>
                     </div>
                 ))}
