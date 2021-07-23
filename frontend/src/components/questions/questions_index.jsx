@@ -120,7 +120,7 @@ class QuestionsIndex extends React.Component {
 
     return (
       <div className="question__index">
-        <QuestionsNavContainer/>
+        {/* <QuestionsNavContainer/> */}
         <div className="questions-index-main">
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (

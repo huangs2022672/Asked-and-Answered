@@ -1,0 +1,28 @@
+.question__container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.question__title {
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.question__body {
+  margin-right: 20px;
+}
+
+.answer__form > form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.answer__form > form > button {
+  width: 25%;
+  background: lightgreen;
+  border-radius: 3px;
+  border-color: lightgray;
+}

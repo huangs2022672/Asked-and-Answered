@@ -1,5 +1,6 @@
 import React from 'react';
 import AnswersItem from './answers_item';
+import './css/answers_index.scss'
 
 class AnswersIndex extends React.Component {
 
@@ -41,7 +42,7 @@ class AnswersIndex extends React.Component {
         } else {
             const {answers, users} = this.props
             return(
-                <div>
+                <div className="answer__list">
                     { answers[0].map(answer => (<AnswersItem
                         users={users}
                         answer={answer}
@@ -57,19 +58,20 @@ class AnswersIndex extends React.Component {
     }
 
     render () {  
+        debugger
         const {title, body} = this.props.question[0]
         return(
-            <div>
-                <div>
-                    <div>{title}</div>
-                    <div>{body}</div>
+            <div className="whole__container">
+                <div className="question__container">
+                    <div className="question__title">{title}</div>
+                    <div className="question__body">{body}</div>
                 </div>
-                <div>
+                <div className="answer__container">
                     {this.renderAnswers()}
                 </div>
-                <div>
+                <div className="answer__form">
                     <form onSubmit={this.handleSubmit}>
-                        <textarea value={this.state.body} id="" cols="30" rows="5"
+                        <textarea value={this.state.body}  id="" cols="30" rows="5" 
                         onChange={this.updateBody} />
                         <button type="submit" >Submit</button>
                     </form>
