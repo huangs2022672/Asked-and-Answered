@@ -34,7 +34,7 @@ class QuestionsIndex extends React.Component {
   }
   handleSubmit(e){
     e.preventDefault();
-    // debugger
+    
     this.props.createQuestion(this.state)
       .then( () => this.setState({ 
         title: "", 
@@ -78,9 +78,9 @@ class QuestionsIndex extends React.Component {
 
   currentView() {
     const { questions, users } = this.props
-    // debugger
+    
     return (
-      questions.map(question => {
+      questions.reverse().map(question => {
         return (
           <QuestionIndexItemContainer
             question={question} 

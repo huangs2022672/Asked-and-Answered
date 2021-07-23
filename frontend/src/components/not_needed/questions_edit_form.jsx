@@ -16,7 +16,7 @@ class QuestionsEditForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        // debugger
+        
         this.props.updateQuestion(this.state)
         
     }
