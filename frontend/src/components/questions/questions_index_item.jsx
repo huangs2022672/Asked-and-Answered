@@ -86,68 +86,64 @@ class QuestionIndexItem extends React.Component {
     }
 
     handleQuestionShow() {
-        this.props.questionShowStatus()
+        // debugger
+        this.props.questionShowStatus(this.props.question._id);
     }
 
     render() {
         const {question, users, current_user} = this.props
-        let author 
-        if (users.data && question) {
-            users.data.forEach( user => {
-                 if (user._id === question.author) {
+        let author
+        let assigned_to
+        if (users && question) {
+            users.forEach( user => {
+                if (user._id === question.author) {
                     author = user
                 }
+                if (question.assigned_to && 
+                    question.assigned_to === user._id) {
+                    assigned_to = user
+                }
             })
-        }
-
+        }        
+        debugger
         return (
             <div className="questions-index-item">
                 {!this.state.editing ? (
                     <div className="question-not-editing">
-                        <div className="username">
-                            {author ?
-                                author.name
-                                :
-                                null
-                            }
+                        
+                        <div className="handle-question-show"
+                        onClick={this.handleQuestionShow}>
+                            <div className="question-author">{author ? (`${author.name} asks:`) : null}</div>
+                            <div className="question-title">{question.title}</div>
+                            <div className="question-body">{question.body}</div>                            
                         </div>
-                        <div className="question-title"
-                            >{question.title}</div>
-                        <div className="question-body"
-                            >{question.body}</div>
-                        <div className="question-assigned"
-                            >{question.assigned_to ? "assigned" : "unassigned"}</div>
-                        <div className="question-resolved"
-                            >{question.resolved ? "resolved" : "unresolved"}</div>
 
-                        { current_user && author && current_user.id === author._id ?  
-                        <div className="user__edit__delete">
-                            <button className="question-delete"
+                        <div className="question-assigned">{question.assigned_to ? (`Assigned to: ${assigned_to.name}`): "UNASSIGNED"}</div>
+                        <div className="question-resolved">{question.resolved ? "RESOLVED" : "UNRESOLVED"}</div>
+
+                        { (current_user && current_user.id === question.author) ? (
+                            <div className="user__edit__delete">
+                                <button className="question-delete" 
                                 onClick={this.handleDelete}>Delete</button>
-                            <button className="question-edit"
+                                <button className="question-edit" 
                                 onClick={ () => this.setState({editing: true})}>Edit</button>
                             </div> 
-                            :
-                            null   
-                        }    
+                        ) : null}    
                         
-                        { 
-                            (question.assigned_to === null && current_user.role === "instructor") 
-                                || 
-                            (question.assigned_to !== null && current_user._id ===  question.assigned_to)
-                                ? 
-                            <button className="question-assign-button"
+                        { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
+                            (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) ? (
+                                <button className="question-assign-button"
                                 onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN"}</button>
-                            :
-                            null
-                        }
-                        <button className="question-resolve-button"
-                            onClick={this.handleResolve}>{question.resolved ? "UNRESOLVED" : "RESOLVED"}</button>
-                        <button className="question-show-button"
-                            onClick={this.handleQuestionShow}>Reply</button>
+                        ) : null}
+
+                        { (current_user && current_user.id === question.author) || 
+                            (question.assigned_to !== null && current_user.id ===  question.assigned_to) ? (
+                                <button className="question-resolve-button"
+                                onClick={this.handleResolve}>{question.resolved ? "UNRESOLVED" : "RESOLVED"}</button>
+                        ) : null}
+
                     </div>
-                ) : (
-                    (
+                ) : ((
                     <div className="question-editing">
                         <form className="question-form"
                         onSubmit={this.handleSubmit}>
@@ -167,8 +163,7 @@ class QuestionIndexItem extends React.Component {
                             <button>Update</button>
                         </form>
                     </div>
-                    )
-                )}
+                ))}
             </div>
         )
     }
