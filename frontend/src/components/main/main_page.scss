@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 
+
+body {
+    background-image: url("../../images/background.jpeg");
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+
 .main_page {
    position: fixed;
     top: 40%;
@@ -9,11 +23,9 @@
     transform: translate(-50%, -50%);
     justify-content: space-between;
     text-align: center;
-
-    /* border: 1px solid black; */
-    
-    
 }
+
+
 
 .questions__index__form_main {
     width: 334px;
