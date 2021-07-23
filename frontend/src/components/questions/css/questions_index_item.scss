@@ -3,10 +3,8 @@
   font-family: 'Source Sans Pro', sans-serif;
   width: 100%;
   // min-height: 100px
-
-  &:hover {
-    background: rgb(247, 255, 247);
-  }
+  // cursor: pointer;
+  border-bottom: 1px solid aquamarine;
 
   .question-not-editing {
     position: relative;
@@ -22,7 +20,18 @@
         display: flex;
         align-items: flex-end;
 
-        .asks {
+        .question-asks {
+          font-size: 14px;
+          font-weight: 600;
+          margin: auto 10px auto 10px;
+          box-sizing: border-box;
+          border: 1px solid rgba(210, 210, 210, 0.5);
+          border-radius: 15px;
+          padding: 0 8px;
+          background: rgba(171, 255, 176, 0.5);
+        }
+
+        .question-assigned-to {
           font-size: 14px;
           font-weight: 600;
           margin: auto 10px auto 10px;
@@ -76,12 +85,19 @@
 
     .question-functions {
       position: absolute;
-      bottom: 10px;
+      top: -15px;
       right: 15px;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       font-size: 24px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 3px;
+      box-sizing: border-box;
+      padding: 5px 5px;
+      background: rgb(245, 255, 245);
+      // -webkit-box-shadow: 5px 5px 5px 5px rgba(0, 255, 0, 0.5); 
+      box-shadow: 0px 2px 4px 2px rgba(0, 255, 0, 0.5);
 
       .user__edit__delete {
         display: flex;
@@ -91,11 +107,63 @@
 
       .question-edit, .question-delete {
         height: 24px;
-        margin-left: 15px;
+        padding: 5px 5px;
         cursor: pointer;
+
+        &:hover {
+          color:rgba(0,0,0,0.45)
+        }
+      }
+
+      div.question-assign-button {
+        font-size: 14px;
+        font-weight: 600;
+        margin: auto 10px auto 10px;
+        box-sizing: border-box;
+        border: 1px solid rgba(210, 210, 210, 0.5);
+        border-radius: 3px;
+        padding: 5px 8px;
+        background: rgba(171, 255, 176, 0.5);
+        cursor: pointer;
+
+        &:hover {
+          color:rgba(0,0,0,0.45)
+        }
+
+      }
+
+      div.question-resolve-button {
+        font-size: 14px;
+        font-weight: 600;
+        margin: auto 10px auto 10px;
+        box-sizing: border-box;
+        border: 1px solid rgba(210, 210, 210, 0.5);
+        border-radius: 3px;
+        padding: 5px 8px;
+        background: rgba(171, 255, 176, 0.5);
+        cursor: pointer;
+
+        &:hover {
+          color:rgba(0,0,0,0.45)
+        }
+      }
+
+
+    }
+  }
+
+  &:hover {
+    background: rgb(245, 255, 245);
+    .question-not-editing {
+      div.question-functions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
+
+
 
   .question-editing {
     //  border-top: 1px solid aquamarine;
