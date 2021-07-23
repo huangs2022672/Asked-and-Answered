@@ -20,6 +20,8 @@ const App = () => (
             <ProtectedRoute exact path="/questions/search/:query" component={SearchIndexContainer}/>
         
         </Switch>
+
+        
     </div>
 );
 
