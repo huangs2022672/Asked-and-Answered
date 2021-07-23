@@ -134,7 +134,7 @@ class QuestionIndexItem extends React.Component {
                             { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
                                 (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) ? (
                                     <div className="question-assign-button"
-                                    onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN"}</div>
+                                    onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN to ME"}</div>
                             ) : null}
 
                             { (current_user && current_user.id === question.author) || 
