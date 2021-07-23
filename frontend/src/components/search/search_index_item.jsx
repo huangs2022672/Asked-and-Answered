@@ -43,10 +43,13 @@ class SearchIndexItem extends React.Component {
 
         if (Object.values(this.filteredQuestions).length === 0) {
             return (
-                <div className="questions__error__photo">
-                    <Link to={`/questions`}>
-                        <img className="noQuestions__photo" src="https://lh3.googleusercontent.com/uuAY9MTdjUiKjq8S7A84XwW10rhn6rFDtzpYlbharvBFgYSmYC94aH0HIkqIbPKu3yMS2QTiuqEZB2acKy0BgZWJQngd5GXCt_bFrWJ3Hdab0g_NW415uQDpd4Q5xJKA26NteihZjw=w2400"/> 
-                    </Link>
+                <div>
+                    <QuestionsNavContainer/>
+                    <div className="questions__error__photo">
+                        <Link to={`/questions`}>
+                            <img className="noQuestions__photo" src="https://lh3.googleusercontent.com/uuAY9MTdjUiKjq8S7A84XwW10rhn6rFDtzpYlbharvBFgYSmYC94aH0HIkqIbPKu3yMS2QTiuqEZB2acKy0BgZWJQngd5GXCt_bFrWJ3Hdab0g_NW415uQDpd4Q5xJKA26NteihZjw=w2400"/> 
+                        </Link>
+                    </div>
                 </div>
             )
         }
