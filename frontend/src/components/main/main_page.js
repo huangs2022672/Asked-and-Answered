@@ -25,7 +25,7 @@ class MainPage extends React.Component {
 
       handleSubmit(e){
     e.preventDefault();
-    // debugger
+    
     this.props.createQuestion(this.state)
       .then( () => this.setState({ 
         title: "", 

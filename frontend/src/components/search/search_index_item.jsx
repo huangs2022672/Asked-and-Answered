@@ -1,4 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import './css/search_index.scss';
+ 
 
 class SearchIndexItem extends React.Component {
     constructor(props){
@@ -8,7 +11,11 @@ class SearchIndexItem extends React.Component {
             term: ""
         }
         this.filteredQuestions = {}
+        
     }
+
+  
+
 
     componentDidMount(){
         this.props.fetchAllQuestions()
@@ -26,7 +33,16 @@ class SearchIndexItem extends React.Component {
                 }
             })
         )})
-        // debugger
+
+        if (Object.values(this.filteredQuestions).length === 0) {
+            return (
+                <div className="questions__error__photo">
+                   <Link to={`/questions`}>
+                       <img className="noQuestions__photo" src="https://lh3.googleusercontent.com/uuAY9MTdjUiKjq8S7A84XwW10rhn6rFDtzpYlbharvBFgYSmYC94aH0HIkqIbPKu3yMS2QTiuqEZB2acKy0BgZWJQngd5GXCt_bFrWJ3Hdab0g_NW415uQDpd4Q5xJKA26NteihZjw=w2400"/> 
+                    </Link>
+                </div>
+            )
+        }
         return (
             <div>
                 {Object.values(this.filteredQuestions).map(question => (
@@ -36,11 +52,12 @@ class SearchIndexItem extends React.Component {
         )
     }
 
+    
+
     render() {
         
         return (
             <div>
-                Hello
                 <div>
                     {this.filterQuestions()}
                 </div>

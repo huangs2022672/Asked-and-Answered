@@ -53,7 +53,7 @@ const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, que
         let date = answer.date
         return `${date.slice(5,7)}/${date.slice(8,10)}/${date.slice(0,4)}`
     }
-    // debugger
+    
     return (
         <div className="answer-item-wrapper">
             <div className='answer-item-container'>

@@ -29,7 +29,7 @@ class QuestionIndexItem extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        // debugger
+        
         this.props.updateQuestion(this.state)
             .then(() => this.setState({editing: false}))                   
     }
@@ -46,7 +46,7 @@ class QuestionIndexItem extends React.Component {
                 fetchPending, 
                 fetchResolved 
             } = this.props;
-        // debugger
+        
         return updateAssignment(question._id)
             .then( () => {
                 if (currentTab === "unassigned") {
@@ -86,7 +86,7 @@ class QuestionIndexItem extends React.Component {
     }
 
     handleQuestionShow() {
-        // debugger
+        
         this.props.questionShowStatus(this.props.question._id);
     }
 
@@ -105,7 +105,7 @@ class QuestionIndexItem extends React.Component {
                 }
             })
         }        
-        // debugger
+        
         return (
             <div className="questions-index-item">
                 {!this.state.editing ? (
