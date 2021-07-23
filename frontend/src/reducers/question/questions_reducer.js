@@ -14,7 +14,7 @@ const questionsReducer = (state = {}, action) => {
       newState = Object.assign({}, state, action.questions);
       return newState;
     case RECEIVE_QUESTION:
-      // debugger
+      
       newState = { data: state.data.filter(question => question._id !== action.question.data._id) }
       newState.data = newState.data.concat(action.question.data)
       // newState[action.question.id] = action.question

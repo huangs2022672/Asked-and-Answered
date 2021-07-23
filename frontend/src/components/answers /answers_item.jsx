@@ -67,6 +67,7 @@ class AnswersItem extends React.Component {
         let date = answer.date
         return `${date.slice(5,7)}/${date.slice(8,10)}/${date.slice(0,4)}`
     }
+<<<<<<< HEAD
 
     // debugger
 
@@ -111,6 +112,15 @@ class AnswersItem extends React.Component {
                     <div className="answer-item-body">{answer.body}</div>
                     </div>
                     <div className="answer-item-button">{edit_delete_buttons()}</div>
+=======
+    
+    return (
+        <div className="answer-item-wrapper">
+            <div className='answer-item-container'>
+                <div className='answer-item-author-info'>
+                    <div className="answer-item-name">{renderUser()}</div>  
+                    <div className="answer-item-date">{convertDate()}</div>         
+>>>>>>> main
                 </div>
             )
         } else {

@@ -10,6 +10,12 @@ class QuestionsNav extends React.Component {
     }
 
     this.handleLogout = this.handleLogout.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
+  }
+
+  handleUpdate(e){
+    e.preventDefault();
+    this.setState({keyword: e.currentTarget.value})
   }
 
   handleLogout() {
@@ -32,8 +38,14 @@ class QuestionsNav extends React.Component {
             <label className="questions-searchbar">
             <span className="iconify" data-icon="fa-solid:search" data-inline="false"></span>
               <input className="questions-searchbar"
-              placeholder="Search"
-                type="text" />
+              placeholder="search..."
+              value={this.state.keyword}
+              onChange={this.handleUpdate}
+                type="text" 
+                />
+                <Link to={`/questions/search/${this.state.keyword}`}>
+                <span className="iconify" data-icon="fa-solid:search" data-inline="false"></span>
+                </Link>
             </label>
           </div>
           <div className="questions-welcome">

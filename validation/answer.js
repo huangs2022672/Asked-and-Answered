@@ -6,8 +6,8 @@ module.exports = function validateQuestionInput(data){
 
     data.body = validText(data.body) ? data.body : "";
 
-    if (!Validator.isLength(data.body, {min: 2, max: 2000})){
-        errors.body = 'Body must be between 2 and 2000 characters';
+    if (!Validator.isLength(data.body, {min: 2, max: 5000})){
+        errors.body = 'Body must be between 2 and 5000 characters';
     }
 
 

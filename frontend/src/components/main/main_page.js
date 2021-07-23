@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './main_page.css';
+import { Link, Redirect } from 'react-router-dom';
+import './main_page.scss';
 
 
 class MainPage extends React.Component {
@@ -25,7 +25,7 @@ class MainPage extends React.Component {
 
       handleSubmit(e){
     e.preventDefault();
-    // debugger
+    
     this.props.createQuestion(this.state)
       .then( () => this.setState({ 
         title: "", 
@@ -55,7 +55,7 @@ class MainPage extends React.Component {
     <div className="questions__index__form_main" >
             <form className="question-create-form"
             onSubmit={this.handleSubmit}>
-              <label className="question-title-input">
+              <div className="question-title-input">
                 <input 
                   className="question-title-input"
                   type="text" 
@@ -63,16 +63,16 @@ class MainPage extends React.Component {
                   onChange={this.handleUpdate("title")}
                   placeholder="Add a title"
                 />
-              </label>
-              <label className="question-body-input">
+              </div>
+              <div className="question-body-input">
                 <textarea
                   className="question-body-input"
                   value={this.state.body} 
                   onChange={this.handleUpdate("body")}
                   placeholder="Add a description">  
                 </textarea>
-              </label>
-              <button>Ask a Question</button>
+              <button className="question-submit-button">Submit Question</button>
+              </div>
             </form>
           </div>
     </>)
@@ -82,8 +82,10 @@ class MainPage extends React.Component {
                     <Link className="mainbtn" to="/questions">View questions</Link>
                     
                     <br/>
-                    <Link className="mainbtn" onClick={this.logoutUser}>Logout</Link>
+                    <Link className="mainbtn" onClick={this.logoutUser}>Log out</Link>
 
+        {(this.props.session.user.role === "instructor") ? (<Redirect to="/questions" />) : (null)}
+         
                 </div>
                 </>
             )

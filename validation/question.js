@@ -10,8 +10,8 @@ module.exports = function validateQuestionInput(data){
     if (!Validator.isLength(data.body, {min: 2, max: 5000})){
         errors.body = 'Body must be between 2 and 5000 characters';
     }
-    if (!Validator.isLength(data.title, {min: 2, max: 240})){
-        errors.title = 'Title cannot be longer than 240 characters';
+    if (!Validator.isLength(data.title, {min: 2, max: 888})){
+        errors.title = 'Title cannot be longer than 888 characters';
     }
 
     if (Validator.isEmpty(data.title)) {

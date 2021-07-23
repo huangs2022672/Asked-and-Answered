@@ -60,6 +60,10 @@ class AnswersIndex extends React.Component {
     }
 
     render () {  
+<<<<<<< HEAD
+=======
+        
+>>>>>>> main
         const {title, body} = this.props.question[0]
         return(
             <div className="answer_idx_wrapper">
