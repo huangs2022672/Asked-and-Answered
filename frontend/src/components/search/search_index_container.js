@@ -3,7 +3,6 @@ import SearchIndexItem from './search_index_item';
 import {fetchAllQuestions} from '../../actions/question_actions';
 
 const mapStateToProps = (state) => {
-    debugger
     return {
         users: state.entities.users,
         questions: state.entities.questions.data,

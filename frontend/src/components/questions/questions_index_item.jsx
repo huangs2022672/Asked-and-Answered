@@ -18,7 +18,6 @@ class QuestionIndexItem extends React.Component {
     }
 
     offQuestionShow(){
-        debugger
         if (this.props.questionShow){
             this.props.questionShowStatus()
         }
@@ -114,7 +113,7 @@ class QuestionIndexItem extends React.Component {
                 }
             })
         }        
-        debugger
+        // debugger
         return (
             <div className="questions-index-item">
                 {!this.state.editing ? (
