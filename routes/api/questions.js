@@ -7,6 +7,28 @@ const User = require("../../models/User");
 const Answer = require('../../models/Answer');
 const validateAnswerInput = require('../../validation/answer');
 
+// router.get('/user/:user_id', (req, res) => {
+//     User.findById(req.params.user_id)
+//         .then(user => {
+//             if (user.role === "instructor") {
+//                 Question.find(({ assigned_to: req.params.user_id }))
+//                     .then(questions => res.json(questions))
+//                     .catch(err => res.status(404).json({ error: "issue with finding questions assigned to you" }))
+//             } else if (user.role === "student") {
+//                 Question.find({ author: req.params.user_id})
+//                     .then(questions => res.json(questions))
+//                     .catch(err => res.status(404).json({ error: "issue with finding questions you posted" }))
+//             }
+//         })
+//         .catch(err => res.status(404).json({ error: 'cannot find user' }));
+// })
+
+router.get('/search', (req, res) => {
+    Question.find({})
+        .then(questions => res.json(questions))
+        .catch(err => res.status(404).json({ error: "cannot find question"}))
+});
+
 
 // WORKING // test route can be removed later
 router.get("/test", (req, res) => res.json({msg: "This is the questions route"}))

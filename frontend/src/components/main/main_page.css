@@ -15,6 +15,10 @@
     
 }
 
+.questions__index__form_main {
+    width: 334px;
+}
+
 .mainbtn {
 
  background-color: #4CAF50; 
@@ -36,7 +40,7 @@
 font-family: 'Luckiest Guy', cursive;
 font-size: 45px;
 /* border: 1px solid black; */
-width: 270px;
+width: 334px;
 
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
-import AnswersIndexContainer from '../answers/answers_index_container'
 import QuestionsNavContainer from './questions_nav_container'
+import AnswersIndexContainer from '../answers/answers_index_container'
 
 import './css/questions_index.scss'
 import './css/questions_nav.scss'
@@ -22,10 +22,16 @@ class QuestionsIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUnassigned()
-    this.props.fetchAllUsers()
+    this.props.fetchUnassigned();
+    this.props.fetchAllUsers();
+    this.offQuestionShow()
   }
 
+  offQuestionShow(){
+    if (this.props.questionShow){
+      this.props.questionShowStatus()
+    }
+  }
   handleSubmit(e){
     e.preventDefault();
     // debugger
@@ -57,14 +63,14 @@ class QuestionsIndex extends React.Component {
   handleFetchResolved(){
     this.setState({currentTab: "resolved"});
     this.props.fetchResolved();
-     if (this.props.questionShow) {
+    if (this.props.questionShow) {
       this.props.questionShowStatus();
     }
   }
   handleUserQuestions(){
     this.setState({currentTab: "mine"});
     this.props.fetchUserQuestions(this.props.current_user.id);
-     if (this.props.questionShow) {
+    if (this.props.questionShow) {
       this.props.questionShowStatus();
     }
   }

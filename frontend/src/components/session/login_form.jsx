@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './session_form.css'
+import './session_form.css';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -14,6 +14,8 @@ class LoginForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderErrors = this.renderErrors.bind(this);
+        this.handleDemoInstructor = this.handleDemoInstructor.bind(this);
+        this.handleDemoStudent = this.handleDemoStudent.bind(this);
     }
 
     componentDidMount(){
@@ -55,6 +57,36 @@ class LoginForm extends React.Component {
         );
     }
 
+    handleDemoStudent () {
+        this.setState({
+            email:"leo1@gmail.com",
+            password: 'leo123',
+            role: "student"
+        })
+        let user = {
+            email: this.state.email,
+            password: this.state.password,
+            role: this.state.role,
+        };
+        this.props.login(user);
+    };
+
+      handleDemoInstructor () {
+        
+            this.setState({
+                email:"aainstructor@gmail.com",
+            password: 'aainstructor',
+            role: "instructor"
+                })
+            let user = {
+            email: this.state.email,
+            password: this.state.password,
+            role: this.state.role,
+        };
+            this.props.login({user});
+    };
+
+
     render() {
         return (
         <div>
@@ -82,6 +114,12 @@ class LoginForm extends React.Component {
                     />
                     <br/>
                     <button type='submit' className='login-form-button'>Submit</button> 
+                    <br />
+                     {this.state.role === "student" ? 
+                    <button className="login-form-button" onClick={this.handleDemoStudent}>Demo Student</button> : 
+                    <button className="login-form-button" onClick={this.handleDemoInstructor}>Demo Instructor</button>
+                }
+                    
                 </div>
                 </form>
                 {this.state.role === "student" ? 
