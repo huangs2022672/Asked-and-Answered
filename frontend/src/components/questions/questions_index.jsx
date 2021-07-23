@@ -166,9 +166,10 @@ class QuestionsIndex extends React.Component {
                       className="question-body-input"
                       value={this.state.body} 
                       onChange={this.handleUpdate("body")}
-                      placeholder="Add a description">  
+                      placeholder="Describe your issue">  
                     </textarea>
-                  <button className="question-submit-button"><span class="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
+                  <button className="question-submit-button"
+                  ><span className="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
                   </div>
                 </form>
               </div>

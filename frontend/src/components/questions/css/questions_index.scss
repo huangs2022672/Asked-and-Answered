@@ -81,10 +81,11 @@ div.question__index {
 
   .questions-index-view {
     // border: 1px solid magenta
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
     /* align-items: center; */
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    display: block;
     height: 75%;
     width: 100%;
     box-sizing: border-box;
@@ -154,7 +155,7 @@ div.question__index {
 
     .question-submit-button {
       position: absolute;
-      right: 45px;
+      right: 35px;
       bottom: 25px;
       font-size: 32px;
       cursor: pointer;
@@ -162,7 +163,10 @@ div.question__index {
       background: transparent;
       margin: 0;
       padding: 0;
-      color: rgba(0,0,0,0.25);      
+      color: rgba(0,0,0,0.25);
+      width: 80px;
+      height: 32px;
+      text-align: right;      
     }
 
     .question-submit-button:hover {
