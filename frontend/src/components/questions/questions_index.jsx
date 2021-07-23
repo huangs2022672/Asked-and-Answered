@@ -25,8 +25,14 @@ class QuestionsIndex extends React.Component {
   componentDidMount(){
     this.props.fetchUnassigned();
     this.props.fetchAllUsers();
+    this.offQuestionShow()
   }
 
+  offQuestionShow(){
+    if (this.props.questionShow){
+      this.props.questionShowStatus()
+    }
+  }
   handleSubmit(e){
     e.preventDefault();
     // debugger
@@ -58,14 +64,14 @@ class QuestionsIndex extends React.Component {
   handleFetchResolved(){
     this.setState({currentTab: "resolved"});
     this.props.fetchResolved();
-     if (this.props.questionShow) {
+    if (this.props.questionShow) {
       this.props.questionShowStatus();
     }
   }
   handleUserQuestions(){
     this.setState({currentTab: "mine"});
     this.props.fetchUserQuestions(this.props.current_user.id);
-     if (this.props.questionShow) {
+    if (this.props.questionShow) {
       this.props.questionShowStatus();
     }
   }
@@ -118,7 +124,7 @@ class QuestionsIndex extends React.Component {
 
     return (
       <div className="question__index">
-        <Search questions={questions} users={users}/>
+        <Search questions={questions} users={users} questionShow={questionShow} questionShowStatus={this.props.questionShowStatus}/>
         <div className="questions-index-main">
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (

@@ -13,16 +13,19 @@ class Search extends React.Component {
 
 
     updateText(field){
-       return e => (this.setState({ [field]: e.currentTarget.value }))
+        return e => (this.setState({ [field]: e.currentTarget.value }))
     }
 
     render() {
+        debugger
         return (
             <div>
-                <input type="text" value={this.state.searchContent} onChange={this.updateText("searchContent")}/> 
-                <Link to={`questions/search/${this.state.searchContent}` } >
-                    <button>Submit</button> 
-                </Link>
+                <form>
+                    <input type="text" value={this.state.searchContent} onChange={this.updateText("searchContent")}/> 
+                    <Link to={`questions/search/${this.state.searchContent}` } >
+                        <button>Submit</button> 
+                    </Link>
+                </form>
             </div>
         )
     }
