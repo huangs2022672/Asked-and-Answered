@@ -1,7 +1,7 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
-import AnswersIndexContainer from '../answers /answers_index_container';
 import QuestionsNavContainer from './questions_nav_container'
+import AnswersIndexContainer from '../answers/answers_index_container'
 
 import './css/questions_index.scss'
 import './css/questions_nav.scss'
@@ -172,9 +172,10 @@ class QuestionsIndex extends React.Component {
                       className="question-body-input"
                       value={this.state.body} 
                       onChange={this.handleUpdate("body")}
-                      placeholder="Add a description">  
+                      placeholder="Describe your issue">  
                     </textarea>
-                  <button className="question-submit-button"><span class="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
+                  <button className="question-submit-button"
+                  ><span className="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
                   </div>
                 </form>
               </div>

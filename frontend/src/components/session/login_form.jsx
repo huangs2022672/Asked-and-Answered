@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
             password: this.state.password,
             role: this.state.role,
         };
-        this.props.login(user);
+        this.props.login(user).then(()=>this.props.history.push('/'));
     };
 
       handleDemoInstructor () {
@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
             password: this.state.password,
             role: this.state.role,
         };
-            this.props.login({user});
+            this.props.login({user}).then(()=>this.props.history.push('/questions'));
     };
 
 
