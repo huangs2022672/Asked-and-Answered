@@ -85,7 +85,7 @@
 
     .question-functions {
       position: absolute;
-      top: -15px;
+      top: 10px;
       right: 15px;
       display: none;
       align-items: center;
@@ -153,7 +153,8 @@
   }
 
   &:hover {
-    background: rgb(245, 255, 245);
+    // background: rgb(245, 255, 245);
+    background: rgb(233, 255, 233);
     .question-not-editing {
       div.question-functions {
         display: flex;
