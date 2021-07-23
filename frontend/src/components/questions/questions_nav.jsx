@@ -38,13 +38,13 @@ class QuestionsNav extends React.Component {
           </div>
           <div className="questions-welcome">
             <span className="questions-welcome">
-              {`Hi ${currentUser.name.split(" ")[0].uppgit}!`}
+              {`Hi ${currentUser.name.split(" ")[0]}!`}
             </span>
           </div>
           <div className="questions-logout">
-              <button className="questions-logout"
+              <div className="logout-button"
               onClick={this.handleLogout}
-              >Log Out</button>
+              >Log Out</div>
           </div>
         </div>
       </div>

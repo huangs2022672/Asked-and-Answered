@@ -53,7 +53,7 @@
         min-width: 250px;
         height: 40px;
         border-radius: 3px;
-        border: 1px solid rgba(0,0,0,0.5);
+        border: 1px solid rgba(0, 100, 0, 0.65);
         box-sizing: border-box;
         padding-left: 35px;
         font-size: 24px;
@@ -63,25 +63,44 @@
 
       input:focus {
         outline: none;
-        border: 1px solid rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(0, 100, 0, 0.85);
       }
     }
     
     div.questions-welcome {
-      margin: 0 20px;
+      margin: 0 10px;
+      margin-left: 40px;
 
       span {
-        font-size: 20px;
+        width: 120px;
+        font-size: 24px;
         font-weight: 600;
-        font-family: 'Source Sans Pro', sans-serif;
-
-        
+        font-family: 'Source Sans Pro', sans-serif;        
       }
     }
 
+    div.questions-logout {
+      
+      div.logout-button {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 40px;
+        background: white;
+        font-size: 22px;
+        font-weight: 500;
+        font-family: 'Source Sans Pro', sans-serif;
+        border: 1px solid green;
+        border-radius: 3px;
+        cursor: pointer;
+      }
 
-
-
+      div.logout-button:hover {
+        // font-weight: 800;
+        color: green;
+      }
+    }
   }
-
 }
