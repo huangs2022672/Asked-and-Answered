@@ -80,7 +80,7 @@ class QuestionsIndex extends React.Component {
     const { questions, users } = this.props
     // debugger
     return (
-      questions.map(question => {
+      questions.reverse().map(question => {
         return (
           <QuestionIndexItemContainer
             question={question} 
