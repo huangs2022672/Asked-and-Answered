@@ -1,17 +1,18 @@
 .answer-item-wrapper{
     border-bottom: 1px rgb(232, 232, 232) solid;
-    width: 98%;
     padding: 10px 10px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .answer-item-wrapper:hover{
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(247, 255, 247);
 }
-.answer-item-author-info{
+
+#answer-item-author-info{
     display: flex;
-    width: 75px;
+    width: 80px;
     justify-content: space-between;
     align-items: baseline;
     > div{
@@ -27,4 +28,13 @@
 .answer-item-date{
     font-size: 12px;
     color: gray;
+}
+
+
+.edit-delete-buttons-container{
+    width: 50px;
+    > div {
+        display: inline;
+        padding: 3px;
+    }
 }

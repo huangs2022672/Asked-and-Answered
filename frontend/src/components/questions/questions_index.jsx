@@ -32,6 +32,7 @@ class QuestionsIndex extends React.Component {
       this.props.questionShowStatus()
     }
   }
+  
   handleSubmit(e){
     e.preventDefault();
     
@@ -180,16 +181,14 @@ class QuestionsIndex extends React.Component {
                 </form>
               </div>
             ) : null}
-
           </div>
         
+          
           { questionShow ? (
-            <div className="questions__index__show">
-              <div>
-                <AnswersIndexContainer users={users}/>
-              </div>
-            </div>
-          ) : null}
+          <div className="questions__index__show">  
+            <AnswersIndexContainer users={users}/>
+          </div>)
+          : null}
 
         </div>
       </div>
