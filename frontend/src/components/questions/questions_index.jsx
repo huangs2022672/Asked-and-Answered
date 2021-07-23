@@ -1,10 +1,12 @@
 import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
 import AnswersIndexContainer from '../answers/answers_index_container'
+import QuestionsNavContainer from './questions_nav_container'
 
-import '../../css/general-tags.scss'
+// import '../../css/general-tags.scss'
 import './css/questions_index.scss'
 import './css/questions_index_form.scss'
+import './css/questions_nav.scss'
 
 class QuestionsIndex extends React.Component {
   constructor(props) {
@@ -118,6 +120,7 @@ class QuestionsIndex extends React.Component {
 
     return (
       <div className="question__index">
+        <QuestionsNavContainer/>
         <div className="questions-index-main">
           <div className="questions-index-tabs">
             <div className={this.state.currentTab === "unassigned" ?  (

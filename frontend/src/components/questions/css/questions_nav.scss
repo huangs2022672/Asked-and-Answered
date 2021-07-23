@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+.questions-navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: rgba(75, 200, 75, 0.85);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+
+  div.aa-logo {
+    width: 125px;
+    margin: 0 20px;
+        
+    a {
+      text-decoration: none;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 24px;
+      text-align: center;
+      color: black;
+    }
+  }
+
+
+  div.question-nav-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+
+    label.questions-searchbar {
+      position: relative;
+
+      .iconify {
+        position: absolute;
+        top: -3px;
+        left: 8px;
+        font-size: 24px;
+        color: rgba(0,0,0,0.2);
+      }
+
+      input {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-width: 250px;
+        height: 40px;
+        border-radius: 3px;
+        border: 1px solid rgba(0,0,0,0.5);
+        box-sizing: border-box;
+        padding-left: 35px;
+        font-size: 24px;
+        font-family: 'Source Sans Pro', sans-serif;
+
+      }
+
+      input:focus {
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, 0.75);
+      }
+    }
+    
+    div.questions-welcome {
+      margin: 0 20px;
+
+      span {
+        font-size: 20px;
+        font-weight: 600;
+        font-family: 'Source Sans Pro', sans-serif;
+
+        
+      }
+    }
+
+
+
+
+  }
+
+}

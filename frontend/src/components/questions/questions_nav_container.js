@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import QuestionsNav from './questions_nav';
 import {
-  deleteQuestion, 
-} from '../../actions/question_actions';
+  logout
+} from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
     return {
-
+      currentUser: state.session.user
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+      logout: () => dispatch(logout())
     };
 }
 
