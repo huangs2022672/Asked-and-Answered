@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './main_page.css';
+import { Link, Redirect } from 'react-router-dom';
+import './main_page.scss';
 
 
 class MainPage extends React.Component {
@@ -64,6 +64,7 @@ class MainPage extends React.Component {
                   placeholder="Add a title"
                 />
               </label>
+              <br />
               <label className="question-body-input">
                 <textarea
                   className="question-body-input"
@@ -72,7 +73,8 @@ class MainPage extends React.Component {
                   placeholder="Add a description">  
                 </textarea>
               </label>
-              <button>Ask a Question</button>
+              <br />
+              <button>Submit Question</button>
             </form>
           </div>
     </>)
@@ -82,8 +84,10 @@ class MainPage extends React.Component {
                     <Link className="mainbtn" to="/questions">View questions</Link>
                     
                     <br/>
-                    <Link className="mainbtn" onClick={this.logoutUser}>Logout</Link>
+                    <Link className="mainbtn" onClick={this.logoutUser}>Log out</Link>
 
+        {(this.props.session.user.role === "instructor") ? (<Redirect to="/questions" />) : (null)}
+         
                 </div>
                 </>
             )
