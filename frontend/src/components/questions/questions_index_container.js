@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchResolved: () => dispatch(fetchResolved()),
         fetchPending: () => dispatch(fetchPending()),
         createQuestion: question => dispatch(createQuestion(question)),
-        questionShowStatus: () => dispatch(questionShowStatus()),
+        questionShowStatus: (questionId) => dispatch(questionShowStatus(questionId)),
         fetchAllUsers: users => dispatch(fetchAllUsers(users))
     };
 }

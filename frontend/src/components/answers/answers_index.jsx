@@ -33,7 +33,6 @@ class AnswersIndex extends React.Component {
     }
 
     renderAnswers(){
-      
         if (this.props.answers.length === 0){
             return(
                 <div></div>
