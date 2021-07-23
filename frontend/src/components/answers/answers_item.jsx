@@ -43,11 +43,16 @@ const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, que
 
 
     const edit_delete_buttons = (currentUser.id===answer.author) ? 
-        (<><button className="question-delete"
-                onClick={()=>deleteAnswer(questionId, answer._id)}>Delete</button>
-            <button className="question-edit"
-                onClick={ handleEdit} >Edit</button>
-            {edit_area}</>):(null)
+        (<div className='edit-delete-buttons-container'>
+            <div className="question-edit"
+                onClick={ handleEdit} >
+                <span className="iconify" data-icon="bx:bxs-edit" data-inline="false"></span>
+            </div>
+            <div className="question-delete"
+                onClick={()=>deleteAnswer(questionId, answer._id)}>
+                <span className="iconify" data-icon="carbon:delete" data-inline="false"></span>
+            </div>
+            {edit_area}</div>):(null)
 
     const convertDate = () => {
         let date = answer.date
@@ -57,7 +62,7 @@ const AnswersItem =({answer, users, currentUser, updateAnswer, deleteAnswer, que
     return (
         <div className="answer-item-wrapper">
             <div className='answer-item-container'>
-                <div className='answer-item-author-info'>
+                <div id='answer-item-author-info'>
                     <div className="answer-item-name">{renderUser()}</div>  
                     <div className="answer-item-date">{convertDate()}</div>         
                 </div>

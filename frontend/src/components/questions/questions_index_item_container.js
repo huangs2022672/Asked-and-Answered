@@ -15,6 +15,7 @@ import {
 const mapStateToProps = (state) => {
     return {
         current_user: state.session.user,
+        questionShow: state.status.questionShow
     };
 };
 
