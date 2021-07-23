@@ -37,7 +37,7 @@ class SearchIndexItem extends React.Component {
     }
 
     render() {
-        
+        debugger
         return (
             <div>
                 Hello

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import SearchIndexItem from './search_index_item';
 import {fetchAllQuestions} from '../../actions/question_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownprops) => {
     debugger
     return {
         users: state.entities.users,
