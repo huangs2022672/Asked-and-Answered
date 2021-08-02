@@ -91,11 +91,14 @@ class MainPage extends React.Component {
             )
         } else {
             return(
+              <>
                 <div>
                     <Link to={'/login-student'}><button className="mainbtn">Log in as Student</button></Link>
                     <br></br>
                     <Link to={'/login-instructor'}><button className="mainbtn"> Log in as Instructor</button></Link>
                 </div>
+
+              </>
             )
         }
     }
@@ -110,6 +113,35 @@ class MainPage extends React.Component {
            
             </div>
         </div>
+
+
+              <div className="aboutus">
+
+              <div className="name">
+                <p>Sammy Huang</p>
+                <a href="http://"><img src="/images/github.png" alt="github" height="20px" width="20px" /></a>&nbsp;&nbsp;
+                <a href="http://"><img src="/images/linkedin.png" alt="linkedin" height="20px" width="20px" /></a>
+              </div>
+
+              <div className="name">
+                <p>Tai Huynh</p>
+                <a href="http://"><img src="/images/github.png" alt="github" height="20px" width="20px" /></a>&nbsp;&nbsp;
+                <a href="http://"><img src="/images/linkedin.png" alt="linkedin" height="20px" width="20px" /></a>
+              </div>
+
+              <div className="name">
+                <p>Ariel Davies</p>
+                <a href="http://"><img src="/images/github.png" alt="github" height="20px" width="20px" /></a>&nbsp;&nbsp;
+                <a href="http://"><img src="/images/linkedin.png" alt="linkedin" height="20px" width="20px" /></a>
+              </div>
+
+              <div className="name">
+                <p>Leo Cao</p>
+                <a href="http://"><img src="/images/github.png" alt="github" height="20px" width="20px" /></a>&nbsp;&nbsp;
+                <a href="http://"><img src="/images/linkedin.png" alt="linkedin" height="20px" width="20px" /></a>
+              </div>
+
+              </div>
         </>
         );
     }
