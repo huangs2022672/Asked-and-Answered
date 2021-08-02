@@ -34,9 +34,10 @@ class QuestionsNav extends React.Component {
           </Link>
         </div>
         <div className="question-nav-right">
+          <form action="">
           <div className="questions-searchbar">
             <label className="questions-searchbar">
-            <span className="iconify" data-icon="fa-solid:search" data-inline="false"></span>
+              <span className="iconify" data-icon="fa-solid:search" data-inline="false" type="submit"></span>
               <input className="questions-searchbar"
               placeholder="search..."
               value={this.state.keyword}
@@ -44,10 +45,11 @@ class QuestionsNav extends React.Component {
                 type="text" 
                 />
                 <Link to={`/questions/search/${this.state.keyword}`}>
-                <span className="iconify" data-icon="fa-solid:search" data-inline="false"></span>
+                <button><span className="iconify" data-icon="fa-solid:search" data-inline="false" type="submit"></span></button>
                 </Link>
             </label>
           </div>
+          </form>
           <div className="questions-welcome">
             <span className="questions-welcome">
               {`Hi ${currentUser.name.split(" ")[0]}!`}

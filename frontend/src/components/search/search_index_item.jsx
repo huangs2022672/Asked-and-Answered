@@ -56,7 +56,7 @@ class SearchIndexItem extends React.Component {
         return (
             <div className="question__index">
                 <QuestionsNavContainer/>
-                <h1>{Object.values(this.filteredQuestions).length} results for {this.props.match.params.query}</h1>
+                <h1>{Object.values(this.filteredQuestions).length} results for "{this.props.match.params.query}"</h1>
                 <div className="questions-index-main">
                     <div className='questions-index-view'>
                         {Object.values(this.filteredQuestions).map(question => (
