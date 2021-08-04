@@ -91,4 +91,4 @@ To accomplish this we created custom logic that filters content based off of the
 ### Leo Cao (Flex Developer)
 * [LinkedIn](https://www.linkedin.com/in/leocho1989)
 * [GitHub](https://github.com/leocho1989)
-* [AngelList]()
+* [AngelList](https://angel.co/u/leo-cao-1)
