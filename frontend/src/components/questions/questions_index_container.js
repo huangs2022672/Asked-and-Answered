@@ -11,7 +11,7 @@ import {
 import {fetchAllUsers} from '../../actions/user_actions'
 
 const mapStateToProps = (state) => {
-    // debugger
+    
     return {
         questions: state.entities.questions.data,
         current_user: state.session.user,

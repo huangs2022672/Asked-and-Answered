@@ -75,11 +75,14 @@ div.question__index {
     background: rgb(222, 255, 222);
     box-sizing: border-box;
     border-radius: 0 10px 10px 10px;
+
+    > div {
+      width: 100%;
+    }
   }
 
   .questions-view-and-form {
     width: 100%;
-
   }
 
   .questions-index-view {

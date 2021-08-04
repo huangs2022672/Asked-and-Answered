@@ -25,7 +25,7 @@ class MainPage extends React.Component {
 
       handleSubmit(e){
     e.preventDefault();
-    // debugger
+    
     this.props.createQuestion(this.state)
       .then( () => this.setState({ 
         title: "", 
@@ -91,11 +91,14 @@ class MainPage extends React.Component {
             )
         } else {
             return(
+              <>
                 <div>
                     <Link to={'/login-student'}><button className="mainbtn">Log in as Student</button></Link>
                     <br></br>
                     <Link to={'/login-instructor'}><button className="mainbtn"> Log in as Instructor</button></Link>
                 </div>
+
+              </>
             )
         }
     }
@@ -105,11 +108,47 @@ class MainPage extends React.Component {
             <>
         <div className="main_page">
             <p className="main_logo">Asked & Answered</p>
+
             <div>
                 {this.ensureLoggedin()}
-           
             </div>
         </div>
+            <div className="aboutus">
+              <div className="name">
+                <div className="developer-info">
+                  <p>Sammy Huang</p>
+                  <a href="https://github.com/huangs2022672" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
+                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                </div>
+              </div>
+
+              <div className="name">
+                <div className="developer-info">
+                  <p>Tai Huynh</p>
+                  <a href="https://github.com/taihuynh812" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
+                  <a href="https://www.linkedin.com/in/tai-huynh-35934664/" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                </div>
+              </div>
+
+              <div className="name">
+                <div className="developer-info">
+                  <p>Ariel Davies</p>
+                  <a href="https://github.com/ariellio" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
+                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                </div>
+              </div>
+
+              <div className="name">
+                <div className="developer-info">
+                  <p>Leo Cao</p>
+                  <a href="https://github.com/leocho1989" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
+                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                </div>
+              </div>
+
+            </div>
+
+
         </>
         );
     }

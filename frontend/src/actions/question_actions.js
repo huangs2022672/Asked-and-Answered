@@ -15,7 +15,6 @@ export const receiveQuestions = questions => ({
 });
 
 export const receiveQuestion = question => {
-    // debugger // 2
     return {
         type: RECEIVE_QUESTION,
         question
@@ -94,7 +93,7 @@ export const createQuestion = (question) => dispatch => {
     return (
         QuestionAPIUtil.createQuestion(question)
             .then(payload =>  {
-                // debugger // 1
+                 // 1
                 return dispatch(receiveQuestion(payload))
             })
             .catch(err => dispatch(receiveErrors(err)))

@@ -41,7 +41,7 @@ class AnswersIndex extends React.Component {
         } else {
             const {answers, users} = this.props
             return(
-                <div >
+                <div className="answer_idx_container">
                     <div className="answer_list_header">{answers[0].length} Answers: </div>
                     <div className="answer_list">
                         { answers[0].map(answer => (<AnswersItem
@@ -60,22 +60,29 @@ class AnswersIndex extends React.Component {
     }
 
     render () {  
-        debugger
+        
         const {title, body} = this.props.question[0]
         return(
             <div className="answer_idx_wrapper">
-                <div className="answer_idx_question_container">
-                    <div className="answer_idx_question_title">{title}</div>
-                    <div className="answer_idx_question_body">{body}</div>
+                <div className="answer-index-body">
+                    <div className="answer_idx_question_container">
+                        <div className="answer_idx_question_title">{title}</div>
+                        <div className="answer_idx_question_body">{body}</div>
+                    </div>
+                    <div className="all-answers"> 
+                        {this.renderAnswers()}
+                    </div>
                 </div>
-                <div className="answer_idx_container">
-                    <div>{this.renderAnswers()}</div>
-                </div>
-                <div className="questions_index_form">
-                    <form onSubmit={this.handleSubmit}>
-                        <textarea value={this.state.body}  id="" cols="30" rows="5" 
+                <div className="answers-index-form">
+                    <form className="input-form" onSubmit={this.handleSubmit}>
+                        <textarea className="answers-body-input" value={this.state.body}  
                         onChange={this.updateBody} />
-                        <button type="submit" >Submit</button>
+                        <button className="answer-submit-button">
+                            <span className="iconify" 
+                                data-icon="fa-mail-reply" 
+                                data-inline="false">
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>

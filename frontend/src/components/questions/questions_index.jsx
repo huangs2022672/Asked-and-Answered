@@ -32,9 +32,10 @@ class QuestionsIndex extends React.Component {
       this.props.questionShowStatus()
     }
   }
+  
   handleSubmit(e){
     e.preventDefault();
-    // debugger
+    
     this.props.createQuestion(this.state)
       .then( () => this.setState({ 
         title: "", 
@@ -78,7 +79,7 @@ class QuestionsIndex extends React.Component {
 
   currentView() {
     const { questions, users } = this.props
-    // debugger
+    
     return (
       questions.reverse().map(question => {
         return (
@@ -180,16 +181,14 @@ class QuestionsIndex extends React.Component {
                 </form>
               </div>
             ) : null}
-
           </div>
         
+          
           { questionShow ? (
-            <div className="questions__index__show">
-              <div>
-                <AnswersIndexContainer users={users}/>
-              </div>
-            </div>
-          ) : null}
+          <div className="questions__index__show">  
+            <AnswersIndexContainer users={users}/>
+          </div>)
+          : null}
 
         </div>
       </div>
