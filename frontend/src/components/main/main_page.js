@@ -10,12 +10,12 @@ class MainPage extends React.Component {
       title: "",
       body: "",
       showing: false
-      
+
     };
         this.logoutUser = this.logoutUser.bind(this);
         this.handleClick = this.handleClick.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
-        
+
     }
 
     logoutUser(e) {
@@ -25,29 +25,29 @@ class MainPage extends React.Component {
 
       handleSubmit(e){
     e.preventDefault();
-    
+
     this.props.createQuestion(this.state)
-      .then( () => this.setState({ 
-        title: "", 
+      .then( () => this.setState({
+        title: "",
         body: ""
-      })).then(this.props.history.push('/questions'));    
+      })).then(this.props.history.push('/questions'));
   }
 
   handleUpdate(field){
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-  
+
     handleClick() {
         if (this.state.showing) {this.setState({showing: false});} else { this.setState({showing: true}); }
-        
+
     }
 
     ensureLoggedin(){
         if(this.props.loggedIn){
             return(
                 <>
-                <div>               
+                <div>
                     <h1 className="welcome_user">Welcome {this.props.session.user.name}</h1>
                     {(this.props.session.user.role === "student") ? (<Link className="mainbtn" onClick={() => this.handleClick()} >Ask a question</Link>) : (null) }
                 {(this.state.showing) ? (
@@ -56,10 +56,10 @@ class MainPage extends React.Component {
             <form className="question-create-form"
             onSubmit={this.handleSubmit}>
               <div className="question-title-input">
-                <input 
+                <input
                   className="question-title-input"
-                  type="text" 
-                  value={this.state.title} 
+                  type="text"
+                  value={this.state.title}
                   onChange={this.handleUpdate("title")}
                   placeholder="Add a title"
                 />
@@ -67,9 +67,9 @@ class MainPage extends React.Component {
               <div className="question-body-input">
                 <textarea
                   className="question-body-input"
-                  value={this.state.body} 
+                  value={this.state.body}
                   onChange={this.handleUpdate("body")}
-                  placeholder="Add a description">  
+                  placeholder="Add a description">
                 </textarea>
               <button className="question-submit-button">Submit Question</button>
               </div>
@@ -80,12 +80,12 @@ class MainPage extends React.Component {
 }
                     <br/>
                     <Link className="mainbtn" to="/questions">View questions</Link>
-                    
+
                     <br/>
                     <Link className="mainbtn" onClick={this.logoutUser}>Log out</Link>
 
         {(this.props.session.user.role === "instructor") ? (<Redirect to="/questions" />) : (null)}
-         
+
                 </div>
                 </>
             )
@@ -118,7 +118,7 @@ class MainPage extends React.Component {
                 <div className="developer-info">
                   <p>Sammy Huang</p>
                   <a href="https://github.com/huangs2022672" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
-                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                  <a href="https://www.linkedin.com/in/sammy-huang/" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@ class MainPage extends React.Component {
                 <div className="developer-info">
                   <p>Ariel Davies</p>
                   <a href="https://github.com/ariellio" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
-                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                  <a href="https://www.linkedin.com/in/ariel-davies-84456a113/" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
                 </div>
               </div>
 
@@ -142,7 +142,7 @@ class MainPage extends React.Component {
                 <div className="developer-info">
                   <p>Leo Cao</p>
                   <a href="https://github.com/leocho1989" target="_blank"><img src="/images/github.png" alt="github" /></a>&nbsp;&nbsp;
-                  <a href="http://" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                  <a href="https://www.linkedin.com/in/leocho1989/" target="_blank"><img src="/images/linkedin.png" alt="linkedin" /></a>
                 </div>
               </div>
 

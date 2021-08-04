@@ -2,7 +2,7 @@
 
 Users can search for questions based off of content contained from the question title or the question body.
 
-<img src="searchPhoto.png" width="950">
+<img src="./assets/searchPhoto.png" width="950">
 
 This photo displays the search results after searching for the term "get". As you can see the search functionality looks for content contained in the title as well as in the body of each question for a match.
 
