@@ -32,15 +32,15 @@ class QuestionsIndex extends React.Component {
       this.props.questionShowStatus()
     }
   }
-  
+
   handleSubmit(e){
     e.preventDefault();
-    
+
     this.props.createQuestion(this.state)
-      .then( () => this.setState({ 
-        title: "", 
+      .then( () => this.setState({
+        title: "",
         body: ""
-      }));    
+      }));
   }
 
   handleUpdate(field){
@@ -79,12 +79,12 @@ class QuestionsIndex extends React.Component {
 
   currentView() {
     const { questions, users } = this.props
-    
+
     return (
       questions.reverse().map(question => {
         return (
           <QuestionIndexItemContainer
-            question={question} 
+            question={question}
             currentTab={this.state.currentTab}
             users={users}
             key={`question-${question._id}`}
@@ -121,7 +121,7 @@ class QuestionsIndex extends React.Component {
   }
 
   render() {
-    const { questions, questionShow, users, current_user } = this.props;   
+    const { questions, questionShow, users, current_user } = this.props;
 
     return (
       <div className="question__index">
@@ -153,27 +153,27 @@ class QuestionsIndex extends React.Component {
 
             <div className="questions-index-view">
                 { questions ? this.currentView() : null }
-            </div>      
+            </div>
 
             { current_user.role === "student" ? (
               <div className="questions__index__form">
                 <form className="question-create-form"
                 onSubmit={this.handleSubmit}>
                   <div className="question-title-input">
-                    <input 
+                    <input
                       className="question-title-input"
-                      type="text" 
-                      value={this.state.title} 
+                      type="text"
+                      value={this.state.title}
                       onChange={this.handleUpdate("title")}
-                      placeholder="Add a title"
+                      placeholder="Ask a Question"
                     />
                   </div>
                   <div className="question-body-input">
                     <textarea
                       className="question-body-input"
-                      value={this.state.body} 
+                      value={this.state.body}
                       onChange={this.handleUpdate("body")}
-                      placeholder="Describe your issue">  
+                      placeholder="Describe your issue">
                     </textarea>
                   <button className="question-submit-button"
                   ><span className="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
@@ -182,10 +182,10 @@ class QuestionsIndex extends React.Component {
               </div>
             ) : null}
           </div>
-        
-          
+
+
           { questionShow ? (
-          <div className="questions__index__show">  
+          <div className="questions__index__show">
             <AnswersIndexContainer users={users}/>
           </div>)
           : null}
