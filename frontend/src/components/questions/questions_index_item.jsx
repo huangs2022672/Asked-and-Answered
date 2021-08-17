@@ -9,7 +9,7 @@ class QuestionIndexItem extends React.Component {
             editing: false,
             rerender: false
         }
-        
+
         this.handleDelete = this.handleDelete.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleAssign = this.handleAssign.bind(this);
@@ -36,24 +36,23 @@ class QuestionIndexItem extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        
+
         this.props.updateQuestion(this.state)
-            .then(() => this.setState({editing: false}))                   
+            .then(() => this.setState({editing: false}))
     }
 
     handleAssign(){
-        const 
-            { 
-                currentTab, 
+        const {
+                currentTab,
                 current_user,
-                updateAssignment, 
-                question, 
-                fetchUnassigned, 
-                fetchUserQuestions, 
-                fetchPending, 
-                fetchResolved 
+                updateAssignment,
+                question,
+                fetchUnassigned,
+                fetchUserQuestions,
+                fetchPending,
+                // fetchResolved
             } = this.props;
-        
+
         return updateAssignment(question._id)
             .then( () => {
                 if (currentTab === "unassigned") {
@@ -64,21 +63,21 @@ class QuestionIndexItem extends React.Component {
                     fetchUserQuestions(current_user._id)
                 }
             })
-        
+
     }
 
     handleResolve(){
         this.offQuestionShow()
-        const 
-        { 
-            currentTab, 
+        const
+        {
+            currentTab,
             current_user,
-            updateResolvedStatus, 
-            question, 
-            fetchUnassigned, 
-            fetchUserQuestions, 
-            fetchPending, 
-            fetchResolved 
+            updateResolvedStatus,
+            question,
+            // fetchUnassigned,
+            fetchUserQuestions,
+            fetchPending,
+            fetchResolved
         } = this.props;
 
         return updateResolvedStatus(question._id)
@@ -94,7 +93,7 @@ class QuestionIndexItem extends React.Component {
     }
 
     handleQuestionShow() {
-        
+
         this.props.questionShowStatus(this.props.question._id);
     }
 
@@ -107,18 +106,18 @@ class QuestionIndexItem extends React.Component {
                 if (user._id === question.author) {
                     author = user
                 }
-                if (question.assigned_to && 
+                if (question.assigned_to &&
                     question.assigned_to === user._id) {
                     assigned_to = user
                 }
             })
-        }        
-        
+        }
+
         return (
             <div className="questions-index-item">
                 {!this.state.editing ? (
                     <div className="question-not-editing">
-                        
+
                         <div className="handle-question-show"
                         onClick={this.handleQuestionShow}>
                             <div className="question-author">
@@ -127,25 +126,25 @@ class QuestionIndexItem extends React.Component {
                                 <div className="question-title">{question.title}</div>
                                 <div className={question.assigned_to ? "question-assigned-to" : ""}>{question.assigned_to ? `Assigned to: ${assigned_to.name.split(" ")[0]}` : null}</div>
                             </div>
-                            
-                            <div className="question-body">{question.resolved ? "[RESOLVED]" : (question.assigned_to ? "[PENDING]" : "[UNASSIGNED]")} {question.body}</div>                            
+
+                            <div className="question-body">{question.resolved ? "[RESOLVED]" : (question.assigned_to ? "[PENDING]" : "[UNASSIGNED]")} {question.body}</div>
                         </div>
 
                         {/* <div className="question-status">
                             <div className={`question-assigned-status ${question.assigned_to ? "green-status" : "yellow-status"}`}>{question.assigned_to ? (`Assigned to: ${assigned_to.name.split(" ")[0]}`): "UNASSIGNED"}</div>
                             <div className={`question-resolved-status ${question.resolved ? "green-status" : "yellow-status"}`}>{question.resolved ? "RESOLVED" : "UNRESOLVED"}</div>
                         </div> */}
-                        
-                        <div className={ (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
-                                (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) || (current_user && current_user.id === question.author) || 
+
+                        <div className={ (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) ||
+                                (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) || (current_user && current_user.id === question.author) ||
                                 (question.assigned_to !== null && current_user.id ===  question.assigned_to) || (current_user && current_user.id === question.author) ? "question-functions" : "something-else"}>
-                            { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) || 
+                            { (question.assigned_to === null && current_user.role === "instructor" && !question.resolved ) ||
                                 (question.assigned_to !== null && current_user.id === question.assigned_to && !question.resolved ) ? (
                                     <div className="question-assign-button"
                                     onClick={this.handleAssign}>{question.assigned_to ? "UNASSIGN" : "ASSIGN to ME"}</div>
                             ) : null}
 
-                            { (current_user && current_user.id === question.author) || 
+                            { (current_user && current_user.id === question.author) ||
                                 (question.assigned_to !== null && current_user.id ===  question.assigned_to) ? (
                                     <div className="question-resolve-button"
                                     onClick={this.handleResolve}>{question.resolved ? "MARK UNRESOLVED" : "MARK RESOLVED"}</div>
@@ -153,12 +152,12 @@ class QuestionIndexItem extends React.Component {
 
                             { (current_user && current_user.id === question.author) ? (
                                 <div className="user__edit__delete">
-                                    <div className="question-edit" 
+                                    <div className="question-edit"
                                     onClick={ () => this.setState({editing: true})}><span className="iconify" data-icon="bx:bxs-edit" data-inline="false"></span></div>
-                                    <div className="question-delete" 
+                                    <div className="question-delete"
                                     onClick={this.handleDelete}><span className="iconify" data-icon="carbon:delete" data-inline="false"></span></div>
-                                </div> 
-                            ) : null} 
+                                </div>
+                            ) : null}
                         </div>
 
                     </div>
@@ -168,16 +167,16 @@ class QuestionIndexItem extends React.Component {
                         onSubmit={this.handleSubmit}>
                             <div className="question-title-input">
                                 <input
-                                    type="text" 
-                                    value={this.state.title} 
+                                    type="text"
+                                    value={this.state.title}
                                     onChange={this.handleUpdate("title")}
                                 />
                             </div>
                             <div className="question-body-input">
                                 <textarea
-                                
-                                    value={this.state.body} 
-                                    onChange={this.handleUpdate("body")}>  
+
+                                    value={this.state.body}
+                                    onChange={this.handleUpdate("body")}>
                                 </textarea>
                                 <button className="question-update-button"><span className="iconify" data-icon="dashicons:update" data-inline="false"></span></button>
                             </div>

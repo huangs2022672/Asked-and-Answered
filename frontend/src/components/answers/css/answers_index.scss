@@ -48,7 +48,7 @@
 
 .answer_idx_container{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
   overflow: auto;
@@ -93,7 +93,7 @@
     color: rgba(0,0,0,0.25);
     width: 80px;
     height: 32px;
-    text-align: right;     
+    text-align: right;
 }
 
 .answer-submit-button:hover{

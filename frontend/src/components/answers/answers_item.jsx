@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './css/answer_item.scss'
 
 
@@ -13,11 +13,11 @@ class AnswersItem extends React.Component {
         this.renderUser = this.renderUser.bind(this)
         this.convertDate = this.convertDate.bind(this)
         this.handleEdit = this.handleEdit.bind(this)
-    } 
+    }
 
 
     handleSubmit(e){
-        const {answer, body, questionId, updateAnswer} = this.props
+        const {answer, questionId, updateAnswer} = this.props
         e.preventDefault();
         const newAnswer = Object.assign({},{id: answer._id, body: this.state.body});
         updateAnswer(questionId, newAnswer);
@@ -38,9 +38,9 @@ class AnswersItem extends React.Component {
     //         <form className="question-form"
     //             onSubmit={handleSubmit}>
     //                 <label>
-    //                     <textarea 
-    //                         value={body} 
-    //                         onChange={(e)=>setBody(e.target.value)}>  
+    //                     <textarea
+    //                         value={body}
+    //                         onChange={(e)=>setBody(e.target.value)}>
     //                     </textarea>
     //                 </label>
     //                 <button type="submit">Update</button>
@@ -49,7 +49,7 @@ class AnswersItem extends React.Component {
 
 
 
-    
+
     renderUser(){
         const {users, answer} = this.props
         let user = users.filter(user => user._id === answer.author);
@@ -59,7 +59,7 @@ class AnswersItem extends React.Component {
 
     edit_delete_buttons(){
         const {currentUser, answer, deleteAnswer, questionId} = this.props
-        return ((currentUser.id===answer.author) ? 
+        return ((currentUser.id===answer.author) ?
         (<><button className="question-delete"
                 onClick={()=>deleteAnswer(questionId, answer._id)}>Delete</button>
             <button className="question-edit"
@@ -76,24 +76,24 @@ class AnswersItem extends React.Component {
 
     // renderAnswers = () => {
     //     debugger
-    //     return (editing === true) ? 
+    //     return (editing === true) ?
     //         (<div className="answer-item-wrapper">
     //             <div className='answer-item-container'>
     //                 <div className='answer-item-author-info'>
-    //                     <div className="answer-item-name">{renderUser()}</div>  
-    //                     <div className="answer-item-date">{convertDate()}</div>         
+    //                     <div className="answer-item-name">{renderUser()}</div>
+    //                     <div className="answer-item-date">{convertDate()}</div>
     //                 </div>
     //             <div className="answer-item-body">{answer.body}</div>
     //             </div>
     //             <div className="answer-item-button">{this.edit_delete_buttons()}</div>
     //             </div>
-    //             ) : ( 
+    //             ) : (
     //                 <div className="answer-item-wrapper">
     //                     <form className="question-form" onSubmit={this.handleSubmit}>
     //                     <label>
-    //                         <textarea 
-    //                             value={this.state.body} 
-    //                             onChange={this.update('body')}>  
+    //                         <textarea
+    //                             value={this.state.body}
+    //                             onChange={this.update('body')}>
     //                         </textarea>
     //                     </label>
     //                     <button type="submit">Update</button>
@@ -109,8 +109,8 @@ class AnswersItem extends React.Component {
                 <div className="answer-item-wrapper">
                     <div className='answer-item-container'>
                         <div className='answer-item-author-info'>
-                            <div className="answer-item-name">{this.renderUser()}</div>  
-                            <div className="answer-item-date">{this.convertDate()}</div>         
+                            <div className="answer-item-name">{this.renderUser()}</div>
+                            <div className="answer-item-date">{this.convertDate()}</div>
                         </div>
                     <div className="answer-item-body">{answer.body}</div>
                     </div>
@@ -122,9 +122,9 @@ class AnswersItem extends React.Component {
                 <div className="answer-item-wrapper">
                         <form className="question-form" onSubmit={this.handleSubmit}>
                         <label>
-                            <textarea 
-                                value={this.state.body} 
-                                onChange={this.update('body')}>  
+                            <textarea
+                                value={this.state.body}
+                                onChange={this.update('body')}>
                             </textarea>
                         </label>
                         <button type="submit">Update</button>
@@ -136,8 +136,8 @@ class AnswersItem extends React.Component {
         // <div className="answer-item-wrapper">
             // <div className='answer-item-container'>
             //     <div className='answer-item-author-info'>
-            //         <div className="answer-item-name">{renderUser()}</div>  
-            //         <div className="answer-item-date">{convertDate()}</div>         
+            //         <div className="answer-item-name">{renderUser()}</div>
+            //         <div className="answer-item-date">{convertDate()}</div>
             //     </div>
             //     <div className="answer-item-body">{answer.body}</div>
             // </div>
@@ -149,4 +149,3 @@ class AnswersItem extends React.Component {
 
 
 export default AnswersItem
-

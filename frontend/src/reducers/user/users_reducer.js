@@ -1,4 +1,8 @@
-import { RECEIVE_ALL_USERS, RECEIVE_USERS_ERRORS, REMOVE_USERS_ERRORS } from "../../actions/user_actions";
+import {
+  RECEIVE_ALL_USERS,
+  // RECEIVE_USERS_ERRORS,
+  // REMOVE_USERS_ERRORS
+} from "../../actions/user_actions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state)
