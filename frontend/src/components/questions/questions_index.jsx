@@ -2,6 +2,7 @@ import React from 'react'
 import QuestionIndexItemContainer from './questions_index_item_container'
 import QuestionsNavContainer from './questions_nav_container'
 import AnswersIndexContainer from '../answers/answers_index_container'
+import Footer from '../footer/footer'
 
 import './css/questions_index.scss'
 import './css/questions_nav.scss'
@@ -124,74 +125,77 @@ class QuestionsIndex extends React.Component {
     const { questions, questionShow, users, current_user } = this.props;
 
     return (
-      <div className="question__index">
+      <>
+        <div className="question__index">
 
-        <QuestionsNavContainer/>
+          <QuestionsNavContainer/>
 
-        <div className="questions-index-tabs">
-          <div className={this.state.currentTab === "unassigned" ?  (
-            "unassigned-tab selected") : ("unassigned-tab")}
-          onClick={this.handleFetchUnassigned}
-          >Unassigned</div>
-          <div className={this.state.currentTab === "pending" ? (
-            "pending-tab selected") : ("pending-tab")}
-          onClick={this.handleFetchPending}
-          >Pending</div>
-          <div className={this.state.currentTab === "resolved" ? (
-            "resolved-tab selected") : ("resolved-tab")}
-          onClick={this.handleFetchResolved}
-          >Resolved</div>
-          <div className={this.state.currentTab === "mine" ? (
-            "mine-tab selected") : ("mine-tab")}
-            onClick={this.handleUserQuestions}
-          >My Tab</div>
-        </div>
-
-
-        <div className="questions-index-main">
-          <div className="questions-view-and-form">
-
-            <div className="questions-index-view">
-                { questions ? this.currentView() : null }
-            </div>
-
-            { current_user.role === "student" ? (
-              <div className="questions__index__form">
-                <form className="question-create-form"
-                onSubmit={this.handleSubmit}>
-                  <div className="question-title-input">
-                    <input
-                      className="question-title-input"
-                      type="text"
-                      value={this.state.title}
-                      onChange={this.handleUpdate("title")}
-                      placeholder="Ask a Question"
-                    />
-                  </div>
-                  <div className="question-body-input">
-                    <textarea
-                      className="question-body-input"
-                      value={this.state.body}
-                      onChange={this.handleUpdate("body")}
-                      placeholder="Describe your issue">
-                    </textarea>
-                  <button className="question-submit-button"
-                  ><span className="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
-                  </div>
-                </form>
-              </div>
-            ) : null}
+          <div className="questions-index-tabs">
+            <div className={this.state.currentTab === "unassigned" ?  (
+              "unassigned-tab selected") : ("unassigned-tab")}
+            onClick={this.handleFetchUnassigned}
+            >Unassigned</div>
+            <div className={this.state.currentTab === "pending" ? (
+              "pending-tab selected") : ("pending-tab")}
+            onClick={this.handleFetchPending}
+            >Pending</div>
+            <div className={this.state.currentTab === "resolved" ? (
+              "resolved-tab selected") : ("resolved-tab")}
+            onClick={this.handleFetchResolved}
+            >Resolved</div>
+            <div className={this.state.currentTab === "mine" ? (
+              "mine-tab selected") : ("mine-tab")}
+              onClick={this.handleUserQuestions}
+            >My Tab</div>
           </div>
 
 
-          { questionShow ? (
-          <div className="questions__index__show">
-            <AnswersIndexContainer users={users}/>
-          </div>)
-          : null}
+          <div className="questions-index-main">
+            <div className="questions-view-and-form">
 
+              <div className="questions-index-view">
+                  { questions ? this.currentView() : null }
+              </div>
+
+              { current_user.role === "student" ? (
+                <div className="questions__index__form">
+                  <form className="question-create-form"
+                  onSubmit={this.handleSubmit}>
+                    <div className="question-title-input">
+                      <input
+                        className="question-title-input"
+                        type="text"
+                        value={this.state.title}
+                        onChange={this.handleUpdate("title")}
+                        placeholder="Ask a Question"
+                      />
+                    </div>
+                    <div className="question-body-input">
+                      <textarea
+                        className="question-body-input"
+                        value={this.state.body}
+                        onChange={this.handleUpdate("body")}
+                        placeholder="Describe your issue">
+                      </textarea>
+                    <button className="question-submit-button"
+                    ><span className="iconify" data-icon="akar-icons:send" data-inline="false"></span></button>
+                    </div>
+                  </form>
+                </div>
+              ) : null}
+            </div>
+
+
+            { questionShow ? (
+            <div className="questions__index__show">
+              <AnswersIndexContainer users={users}/>
+            </div>)
+            : null}
+
+          </div>
         </div>
-      </div>
+        <Footer />
+      </>
     )
   }
 }

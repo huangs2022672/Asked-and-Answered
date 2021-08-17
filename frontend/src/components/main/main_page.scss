@@ -33,7 +33,7 @@ background-repeat: no-repeat;
 
 .mainbtn {
 
- background-color: #4CAF50; 
+ background-color: #4CAF50;
   border: none;
   color: black;
   padding: 15px 32px;
@@ -67,11 +67,11 @@ width: 400px;
   width: 100%;
   position: fixed;
   justify-content: space-evenly;
-  border: 1px solid black;
+  // border: 1px solid black;
   padding: 0px 20px;
   padding-right: 50px;
 
-  background-color: rgba(196, 194, 194, 0.4);
+  background-color: rgba(65, 65, 65, 0.8);
 
   img{
     height: 30px;
@@ -79,13 +79,32 @@ width: 400px;
   }
 
   .developer-info{
-    text-align: center;
+    // text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 42px;
+
+    p {
+      margin: 10px;
+      color: white;
+    }
+
+    a {
+      color: white;
+
+      &:hover {
+        color: rgb(212, 212, 212)
+      }
+    }
   }
 
   .name{
-    font-size: 20px;
-    font-weight: bolder;
-    font-family: 'Play', sans-serif;
+    font-size: 18px;
+    // font-weight: 500;
+    font-family: sans-serif;
+    // font-family: 'Play', sans-serif;
   }
 }
 
@@ -106,19 +125,19 @@ div.questions__index__form_main {
     font-family: 'Source Sans Pro', sans-serif;
     box-sizing: border-box;
   }
-  
+
   input, textarea {
     width: 100%;
     border-radius: 3px;
     outline: none;
     border: 1px solid rgba(0,0,0,0.15);
   }
-  
+
   input:focus, textarea:focus {
     outline: none;
     border: 2px solid #007a00;
   }
-  
+
   input {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -127,7 +146,7 @@ div.questions__index__form_main {
     font-weight: 600;
     padding: 3px 10px;
   }
-  
+
   textarea {
     resize: none;
     overflow: hidden;
@@ -162,14 +181,14 @@ div.questions__index__form_main {
     color: black;
     // width: 80px;
     // height: 32px;
-    text-align: right;    
-    border-radius: 5px;  
+    text-align: right;
+    border-radius: 5px;
     box-sizing: border-box;
     padding: 5px 10px;
   }
 
   .question-submit-button:hover {
-    color: rgba(20, 190, 0, 0.5); 
+    color: rgba(20, 190, 0, 0.5);
   }
 
   .question-submit-button:active {
