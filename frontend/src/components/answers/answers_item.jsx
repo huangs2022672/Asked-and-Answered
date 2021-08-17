@@ -102,7 +102,7 @@ class AnswersItem extends React.Component {
     // }
 
     render(){
-        debugger
+        // debugger
         const {answer} = this.props
         if (!this.state.edit) {
             return(
