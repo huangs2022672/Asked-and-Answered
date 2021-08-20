@@ -54,7 +54,7 @@ router.get('/unassigned', (req, res) => {
 // WORKING // fetches all pending questions // pending meaning has been assigned, but not resolved
 router.get('/pending', (req, res) => {
     Question.find({ resolved: false })
-        .sort({date: 1})
+        .sort({date: -1})
         .then(questions => res.json(questions.filter(question => {
             return !!question.assigned_to
         })))
@@ -65,7 +65,7 @@ router.get('/pending', (req, res) => {
 // WORKING // fetches all resolved questions // does not matter if assigned or not
 router.get('/resolved', (req, res) => {
     Question.find({ resolved: true })
-        .sort({date: 1})
+        .sort({date: -1})
         .then(questions => res.json(questions))
         .catch(err =>  res.status(404).json({ error: "/resolved not found" }))
 });
@@ -74,7 +74,7 @@ router.get('/resolved', (req, res) => {
 // WORKING // fetches all questions relating to the user // instructors => questions assigned to them // students => questions they posted
 router.get('/user/:user_id', (req, res) => {
     User.findById(req.params.user_id)
-        .sort({date: 1})
+        .sort({date: -1})
         .then(user => {
             if (user.role === "instructor") {
                 Question.find(({ assigned_to: req.params.user_id }))
