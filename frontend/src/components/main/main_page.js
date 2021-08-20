@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './main_page.scss';
-import Footer from '../footer/footer'
+// import Footer from '../footer/footer';
 
 class MainPage extends React.Component {
   constructor(props) {

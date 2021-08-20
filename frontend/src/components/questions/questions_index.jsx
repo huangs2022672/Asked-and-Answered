@@ -1,8 +1,8 @@
-import React from 'react'
-import QuestionIndexItemContainer from './questions_index_item_container'
-import QuestionsNavContainer from './questions_nav_container'
-import AnswersIndexContainer from '../answers/answers_index_container'
-import Footer from '../footer/footer'
+import React from 'react';
+import QuestionIndexItemContainer from './questions_index_item_container';
+import QuestionsNavContainer from './questions_nav_container';
+import AnswersIndexContainer from '../answers/answers_index_container';
+// import Footer from '../footer/footer';
 
 import './css/questions_index.scss'
 import './css/questions_nav.scss'
@@ -82,7 +82,7 @@ class QuestionsIndex extends React.Component {
     const { questions, users } = this.props
 
     return (
-      questions.reverse().map(question => {
+      questions.map(question => {
         return (
           <QuestionIndexItemContainer
             question={question}

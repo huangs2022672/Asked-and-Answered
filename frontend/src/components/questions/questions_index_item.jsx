@@ -19,7 +19,7 @@ class QuestionIndexItem extends React.Component {
 
     offQuestionShow(){
         if (this.props.questionShow){
-            this.props.questionShowStatus()
+            // this.props.questionShowStatus()
         }
     }
 

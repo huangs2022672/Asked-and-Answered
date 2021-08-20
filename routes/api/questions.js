@@ -45,6 +45,7 @@ router.get('/', (req, res) => {
 // WORKING // fetches all unassgined questions // unassigned meaning has not been assigned and not resolved
 router.get('/unassigned', (req, res) => {
     Question.find({ assigned_to: null, resolved: false })
+        .sort({date: -1})
         .then(questions => res.json(questions))
         .catch(err => res.status(404).json({ error: "/unassigned not found" }))
 });
@@ -53,13 +54,14 @@ router.get('/unassigned', (req, res) => {
 // WORKING // fetches all pending questions // pending meaning has been assigned, but not resolved
 router.get('/pending', (req, res) => {
     Question.find({ resolved: false })
+        .sort({date: 1})
         .then(questions => res.json(questions.filter(question => {
             return !!question.assigned_to
         })))
         .catch(err =>  res.status(404).json({ error: "/pending not found" }))
-}); 
-    
-        
+});
+
+
 // WORKING // fetches all resolved questions // does not matter if assigned or not
 router.get('/resolved', (req, res) => {
     Question.find({ resolved: true })
@@ -189,10 +191,10 @@ router.post('/:question_id',
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        
+
         const newAnswer = new Answer ({
             body: req.body.body,
-            author: req.user.id, 
+            author: req.user.id,
             question_id: req.params.question_id
         });
 

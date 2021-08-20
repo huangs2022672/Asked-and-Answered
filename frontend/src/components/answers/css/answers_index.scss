@@ -25,6 +25,7 @@
   font-weight: 600;
   margin-left: 20px;
   height: 20%;
+  overflow: auto;
 }
 
 .answer_idx_question_body{
@@ -80,6 +81,7 @@
   resize: none;
   margin: 15px 30px;
   border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
 }
 
 .answer-submit-button{
