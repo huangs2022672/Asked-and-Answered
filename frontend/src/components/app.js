@@ -5,8 +5,9 @@ import { Route, Switch } from 'react-router';
 import MainPageContainer from './main/main_page_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-import QuestionsIndexContainer from './questions/questions_index_container'
-import SearchIndexContainer from './search/search_index_container'
+import QuestionsIndexContainer from './questions/questions_index_container';
+import SearchIndexContainer from './search/search_index_container';
+import Footer from './footer/footer'
 
 const App = () => (
     <div>
@@ -18,10 +19,8 @@ const App = () => (
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
             <ProtectedRoute exact path="/questions" component={QuestionsIndexContainer}/>
             <ProtectedRoute exact path="/questions/search/:query" component={SearchIndexContainer}/>
-        
         </Switch>
-
-        
+        <Footer/>        
     </div>
 );
 

@@ -153,7 +153,8 @@ class QuestionsIndex extends React.Component {
           <div className="questions-index-main">
             <div className="questions-view-and-form">
 
-              <div className="questions-index-view">
+              <div className={current_user.role === "student" ? "questions-index-view" : "questions-index-view instructor-view"}
+              >
                   { questions ? this.currentView() : null }
               </div>
 
@@ -194,7 +195,7 @@ class QuestionsIndex extends React.Component {
 
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     )
   }

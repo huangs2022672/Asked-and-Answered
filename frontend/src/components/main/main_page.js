@@ -118,7 +118,7 @@ class MainPage extends React.Component {
               {this.ensureLoggedin()}
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }

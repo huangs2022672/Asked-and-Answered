@@ -8,30 +8,30 @@
 }
 
 .answer-index-body{
-  height: 85%;
+  height: 80%;
 }
 
 .answer_idx_question_container{
   height: 20%;
-  padding-top: 5px;
-  border-bottom: 1px lightgray solid;
+  padding-top: 15px;
+  border-bottom: 1px solid aquamarine;
   > div{
     box-sizing: border-box;
   }
 }
 
 .answer_idx_question_title{
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-left: 20px;
   height: 20%;
 }
 
 .answer_idx_question_body{
-  font-size: 14px;
+  font-size: 18px;
   margin: 5px 10px;
   padding: 10px;
-  background-color: rgb(255, 254, 254);
+  background-color: transparent;
   border-radius: 5px;
   height: 70%;
   display: flex;
@@ -40,7 +40,8 @@
 }
 
 .all-answers{
-  height: 80%;
+  height: 75%;
+  overflow: auto;
   > div{
     height: 100%;
   }
@@ -51,7 +52,7 @@
   justify-content: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
-  overflow: auto;
+  // overflow: auto;
   height: 100%;
   padding: 10px;
   > div {
@@ -65,8 +66,8 @@
 
 .answers-index-form{
   position: relative;
-  margin-top: 2%;
-  height: 13%;
+  // margin-top: 2%;
+  height: 20%;
 }
 
 .input-form{
@@ -75,9 +76,10 @@
 
 .answers-body-input{
   width: calc(94% - 20px);
-  height: 50%;
+  height: 70%;
   resize: none;
-  margin: 30px;
+  margin: 15px 30px;
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
 .answer-submit-button{

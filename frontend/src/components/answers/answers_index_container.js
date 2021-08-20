@@ -9,15 +9,12 @@ const mSTP =(state) => ({
 
 });
 
-const mDTP = (dispatch) => (
-{
-fetchAnswers:(questionId)=> dispatch(fetchAnswers(questionId)),
-fetchAnswer:(questionId,answerId)=> dispatch(fetchAnswer(questionId, answerId)),
-
-createAnswer:(questionId,answer)=> dispatch(createAnswer(questionId,answer)),
-updateAnswer:(questionId,answer) => dispatch(updateAnswer(questionId,answer)),
-deleteAnswer:(questionId, answerId) => dispatch(deleteAnswer(questionId,answerId))
-
+const mDTP = (dispatch) => ({
+    fetchAnswers:(questionId)=> dispatch(fetchAnswers(questionId)),
+    fetchAnswer:(questionId,answerId)=> dispatch(fetchAnswer(questionId, answerId)),
+    createAnswer:(questionId,answer)=> dispatch(createAnswer(questionId,answer)),
+    updateAnswer:(questionId,answer) => dispatch(updateAnswer(questionId,answer)),
+    deleteAnswer:(questionId, answerId) => dispatch(deleteAnswer(questionId,answerId))
 });
 
 export default connect(mSTP, mDTP)(AnswersIndex);
